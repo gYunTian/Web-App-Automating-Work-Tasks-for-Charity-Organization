@@ -1,0 +1,4 @@
+css:
+https://tailwindcss.com/
+
+https://nextjs.org/learn/basics/data-fetching/getstaticprops-details
