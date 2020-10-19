@@ -5,9 +5,24 @@ const name = 'Logo'
 
 export default function Login() {
     return (
-        <div class="flex flex-col h-screen justify-between">
-            <Header> 
-            </Header>
+        <div class="flex flex-col h-screen">
+            <div class="h-10 bg-black flex ">
+                    <div class="w-full max-w-screen-xl relative mx-auto px-6">
+                        <p class="text-white text-base mt-2">Logo</p>
+                    </div>
+            </div>
+            
+            <nav class="bg-gray-800">
+                <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+                    
+                    <div class="relative flex flex-row items-center justify-center h-16">
+                    
+                    <div class="text-gray-700 text-center bg-gray-400 px-4 py-2 m-2">1</div>
+                    <div class="text-gray-700 text-center bg-gray-400 px-4 py-2 m-2">2</div>
+                    <div class="text-gray-700 text-center bg-gray-400 px-4 py-2 m-2">3</div>
+                    </div>
+                </div>
+            </nav>
 
             <div>
                 <div className="container mx-auto">
@@ -44,7 +59,7 @@ export default function Login() {
                 </div>
             </div>
         
-            <div class="flex justify-center border-t-2">
+            <div class="flex justify-center border-t-2 fixed z-100 bottom-0 inset-x-0">
                 <p class="text-center text-gray-500 text-xs mt-5 h-10">
                     &copy;2020 SMU EBS G1T3. All rights reserved.
                 </p>
