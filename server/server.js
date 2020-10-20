@@ -1,20 +1,41 @@
 // app.js - main app
 const express = require('express');
-require('dotenv').config();
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
 const server = express();
-server.use(cookieParser());
+require('dotenv').config();
 
+let AppEnv = require('cfenv').getAppEnv();
+
+// Import routes
 const authRouter = require('./routes/authRoute');
+const loginRouter = require('./routes/loginRoute');
+const registerRouter = require('./routes/registerRoute');
 
+// env var
+var path = process.env.MONGO_URI;
+
+try {
+  // connect mongo
+  require('./db/mongo-connect.js')(AppEnv);
+
+} catch (error) {
+  console.log('Error connecting to mongoDB');
+  
+}
+
+// Use utils
 server.use(cookieParser());
-server.use(
-    '/api', 
-    authRouter
-);
+server.use(bodyParser.urlencoded({ extended: false }));
+server.use(bodyParser.json());
 
+// Use routes
+server.use('/api', authRouter);
+server.use('/api',loginRouter);
+server.use('/api',registerRouter);
 
+// Use Cors
 server.use(
     cors({
       origin: [

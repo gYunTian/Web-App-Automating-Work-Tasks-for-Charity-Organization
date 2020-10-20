@@ -1,0 +1,28 @@
+
+
+.content {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo {
+    position: absolute;
+    background-size: contain;
+    background-position: left center;
+    background-repeat: no-repeat;
+    display: inline-block;     
+    top: 10px;
+    bottom: 10px;
+    left: 20px;
+}
+
+.logo-text {
+    color: #4a4a4a;
+    letter-spacing: 0.1em;
+    font-size: 4rem;
+    display: inline-block;
+}
+
