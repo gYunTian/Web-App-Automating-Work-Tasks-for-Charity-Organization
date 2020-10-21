@@ -8,11 +8,11 @@ class Header extends React.Component {
                 
                 <span className="text-xl text-black font-bold uppercase tracking-wide"> EBS G1T3 </span>
                 
-                <button className="text-black inline-flex p-3 rounded lg:hidden ml-auto hover:text-gray outline-none nav-toggler"data-target="#navigation">
+                <button className="text-black font-bold inline-flex p-3 rounded lg:hidden ml-auto hover:text-gray outline-none nav-toggler mr-2" data-target="#navigation">
                     <i className="material-icons">Menu</i>
                 </button>
                 
-                <div className="hidden top-navbar w-full lg:inline-flex lg:flex-grow lg:w-auto" id="navigation">
+                <div className="hidden top-navbar w-full lg:inline-flex lg:flex-grow lg:w-auto" id="navigation">    
                     
                     <div className="lg:inline-flex lg:flex-row lg:ml-auto lg:w-auto w-full lg:items-center items-start  flex flex-col lg:h-auto mx-auto" >
                         <a href="#" className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-black font-bold font-size text-l items-center justify-center hover:bg-gray-900 hover:text-white">
@@ -36,10 +36,14 @@ class Header extends React.Component {
                     </div>
                 </div>
 
-                <div id="navigation">
-                    <span className="text-xl text-black font-bold tracking-wide"> Logout </span>
-                </div>
 
+                    <div>
+                        <a href="#" className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-black font-bold font-size text-l items-center justify-center hover:bg-gray-900 hover:text-white" >
+                            <span className=""> Logout </span>
+                        </a>
+                    </div>
+
+                
             </nav>
             </div>
             </div>

@@ -5,19 +5,19 @@ import TableBody from './TableBody'
 
 export default function Table() {
     return (
-        <body class="antialiased font-sans bg-gray-200 flex-grow m-0 h-full">
-            <div class="container mx-auto px-4 sm:px-8 flex-grow">
-                <div class="py-8 flex-grow">
+        <div className="antialiased font-sans bg-gray-200 flex-grow m-0 h-full">
+            <div className="container mx-auto px-4 sm:px-8 flex-grow">
+                <div className="py-8 flex-grow">
                     
                     <div>
-                        <h2 class="text-2xl font-semibold leading-tight">Beneficiaries</h2>
+                        <h2 className="text-2xl font-semibold leading-tight">Beneficiaries</h2>
                     </div>
 
                     <SearchFilter/>
 
-                    <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
-                        <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
-                            <table class="min-w-full leading-normal">
+                    <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
+                        <div className="inline-block min-w-full shadow rounded-lg overflow-hidden">
+                            <table className="min-w-full leading-normal">
                                 <TableHeader/>
                                 <TableBody/>
                             </table>
@@ -29,6 +29,6 @@ export default function Table() {
 
                 </div>
             </div>
-        </body>
+        </div>
     )
 }

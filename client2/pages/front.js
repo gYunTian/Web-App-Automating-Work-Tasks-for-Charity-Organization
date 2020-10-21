@@ -1,11 +1,10 @@
-import Header from '../components/portal/Header'
-import Footer from '../components/portal/Footer'
-import MainForm from '../components/portal/MainForm'
+import Header from '../components/front/Header'
+import Footer from '../components/front/Footer'
+import MainForm from '../components/front/MainForm'
 
 const name = 'Logo'
 
 export default function front() {
-
     return (
         
         <div className="flex flex-col h-screen justify-between">
