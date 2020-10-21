@@ -2,7 +2,7 @@
 class Header extends React.Component {
     render () {
         return (    
-            <div className="bg-white">
+            <div className="bg-gray-200">
             <div className="container mx-auto">
             <nav className="flex items-center p-3 flex-wrap">
                 

@@ -3,7 +3,7 @@ import NavTools from './NavTools'
 import TableHeader from './TableHeader'
 import TableBody from './TableBody'
 
-export default function Table() {
+export default function Table({ data }) {
     return (
         <div className="antialiased font-sans bg-gray-200 flex-grow m-0 h-full">
             <div className="container mx-auto px-4 sm:px-8 flex-grow">
@@ -19,7 +19,7 @@ export default function Table() {
                         <div className="inline-block min-w-full shadow rounded-lg overflow-hidden">
                             <table className="min-w-full leading-normal">
                                 <TableHeader/>
-                                <TableBody/>
+                                <TableBody data={ data }/>
                             </table>
                             
                             <NavTools/>

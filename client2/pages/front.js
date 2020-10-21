@@ -1,3 +1,6 @@
+// flow: https://dev.to/dipakkr/implementing-authentication-in-nodejs-with-express-and-jwt-codelab-1-j5i
+// https://jasonwatmore.com/post/2018/06/14/nodejs-mongodb-simple-api-for-authentication-registration-and-user-management
+
 import Header from '../components/front/Header'
 import Footer from '../components/front/Footer'
 import MainForm from '../components/front/MainForm'
