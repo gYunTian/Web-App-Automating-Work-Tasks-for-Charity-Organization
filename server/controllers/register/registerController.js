@@ -6,15 +6,41 @@ async function register(req, res) {
 
     const { email, name, password } = req.body;
 
-    // if (await User.findOne({ email: email })) {
-    if (email == 'test@email') {
-        res.setHeader('Content-type', 'application/json');
-        
+    console.log(email, name, password);
+
+    if (await User.findOne({ email: email })) {
         res.status(409).end(JSON.stringify({
-            'error': 'Email already exist'
+            'status': 'Email already exist'
         }))
     }
 
+    // user not found
+    const user = new User({
+        email:email, 
+        name:name, 
+        password:password
+    });
+
+    // save user
+    try {
+        await user.save();
+        console.log('Successfully saved user');
+        res.status(200).end(JSON.stringify({
+            'status': 'user created'
+        }));
+
+    } catch (error) {
+        console.log('Error saving user to mongoDB');
+        console.log(error);
+        
+        res.status(500).end(JSON.stringify({
+            'status': 'Error saving user'
+        }))
+
+    }
+    
+    // save user to odata
+    // https://smucf-dev-ebs-g1t3-srv.cfapps.us10.hana.ondemand.com/
 }
 
 module.exports = {

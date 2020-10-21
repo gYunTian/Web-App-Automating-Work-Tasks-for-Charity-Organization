@@ -11,3 +11,4 @@
 
 #ignored
 ./client
+./server/.env

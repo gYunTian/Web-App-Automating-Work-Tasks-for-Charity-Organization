@@ -5,32 +5,36 @@ const User = require('../../models/user.model')
 async function login(req, res) {
 
     const { email, password } = req.body;
-
-    const user = await User.findOne({ email });
     
-    console.log(email, password);
-    res.status(200).send("hello");
+    try {
+        const user = await User.findOne({ email });
 
+        if (!user) throw 'Email not found';
+
+        //user exists, check password
+        if (password != user.password) {
+            throw 'Incorrect password';
+        }
+        
+        console.log(email, password, 'logged in');
+
+        res.status(200).end(JSON.stringify({
+            'status': 'user logged in',
+            'email': email,
+            'name': user.name
+
+        }));
+
+    } catch (error) {
+        console.log('Error logging in user');
+        console.log(error);
+        
+        res.status(500).end(JSON.stringify({
+            'status': 'Error logging in user'
+        }));
+    }
 }
 
 module.exports = {
     login
 }
-
-
-// const login = async (req, res) => {
-//     const { email, password } = req.body;
-
-//     try {
-//         const result = await emailExists(email);
-
-//         const { id, role } = result;
-
-//         await generateToken(res, id, role);
-
-
-
-//     } catch (err) {
-//         return res.status(500).json(err.toString());
-//     }
-// }
