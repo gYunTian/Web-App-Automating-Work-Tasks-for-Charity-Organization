@@ -6,13 +6,9 @@ import RegisterForm from './RegisterForm'
 class MainForm extends React.Component {
     constructor() {
         super();
-
         this.state = {
             'showLogin': true
         };
-
-        // this.loginClick = this.loginClick.bind(this)
-        // this.registerClick = this.registerClick.bind(this)
     }
     
     viewRegister = showLogin => {

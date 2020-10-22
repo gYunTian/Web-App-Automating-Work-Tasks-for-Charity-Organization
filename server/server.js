@@ -1,18 +1,20 @@
 // app.js - main app
+// refactor
+
 const express = require('express');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const server = express();
+const swaggerUi = require('swagger-ui-express');
 require('dotenv').config();
+const specs = require('./swagger');
 
 let appEnv = require('cfenv').getAppEnv();
 let mongoConnect = require('./db/mongo-connect.js');
 
-// Import routes
-const authRouter = require('./routes/authRoute');
-const loginRouter = require('./routes/loginRoute');
-const registerRouter = require('./routes/registerRoute');
+// Import route
+const apiRouter = require('./routes/apiRoute');
 
 // env var
 var path = process.env.MONGO_URI;
@@ -31,6 +33,7 @@ try {
 server.use(cookieParser());
 server.use(bodyParser.urlencoded({ extended: false }));
 server.use(bodyParser.json());
+server.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 
 // Use Cors
 server.use(
@@ -45,9 +48,7 @@ server.use(
 );
 
 // Use routes
-server.use('/api', authRouter);
-server.use('/api',loginRouter);
-server.use('/api',registerRouter);
+server.use('/api', apiRouter);
 
 const PORT = 5000;
 server.listen(PORT, () => console.log('server started on port '+PORT));

@@ -6,12 +6,11 @@ const path = require('path');
 
 exports.authenticate = async (req, res) => {
     
-    //const { id, role } = req.body;
-      
+    //const { email, name, role } = req.body;
     try {
         console.log('creating cookie');
         
-        let payload = {'id': 'test_id', 'role': 'volunteer'};
+        let payload = {'email': 'test_email', 'name': 'test_name', 'role': 'volunteer'};
         
         //access token      
         let accessToken = jwt.sign(
@@ -35,7 +34,7 @@ exports.authenticate = async (req, res) => {
 
 
 exports.verify = async (req, res, next) => {
-
+    
     console.log('verifying cookie');
 
     try {
@@ -50,7 +49,8 @@ exports.verify = async (req, res, next) => {
         let pkey = fs.readFileSync(path.join(__dirname, 'public.pem'));
         let payload = await jwt.verify(token, pkey);
         
-        console.log('id : '+payload.id);
+        console.log('email : '+payload.email);
+        console.log('name : '+payload.name);
         console.log('role : '+payload.role);
         console.log('cookie checked successfully');
 
