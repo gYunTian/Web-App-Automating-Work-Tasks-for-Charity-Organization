@@ -7,6 +7,7 @@ import { useAuth } from "../providers/Auth";
 import LoadingOverlay from 'react-loading-overlay';
 
 export default function Home({ data }) {
+  
   return (
     <div className="flex flex-col h-screen">
       <Header />
@@ -14,7 +15,7 @@ export default function Home({ data }) {
       <SubHeader />
       
       <div className="antialiased bg-gray-200 flex-grow">
-          <Table data={data} />
+          <Table odata={data} />
       </div>
     
       <Footer />
@@ -43,6 +44,7 @@ export async function getStaticProps() {
   var data = await response.json();
   data = data.value;
 
+  console.log("Sucessfully fetched data");
   return {
     props: {
       data,

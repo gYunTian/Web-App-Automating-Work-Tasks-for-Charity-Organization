@@ -1,59 +1,66 @@
-export default function TableRow({ data, index }) {
+import classnames from 'classnames';
 
-  let unit = /#[0-9]+-[0-9]+/.exec(data.address);
-  data.address = data.address.replace(unit, "");
+export default function TableRow({ data, index, bg }) {
 
-  let block = /blk\s*[0-9]+|block\s*[0-9]+/.exec(data.address.toLowerCase());
-  data.address = data.address.replace(block, "");
+  let profile = data.race + " " + data.religion + " " + data.dietaryRestrictions
+  // console.log(beneficiary)
 
-  let street = data.address;
+  // console.log("first "+beneficiary.address)
+  // const unit = /#[0-9]+-[0-9]+/.exec(beneficiary.address);
+  // beneficiary.address = beneficiary.address.replace(unit, "");
 
-  console.log('unit: '+unit);
-  console.log('block: '+block);
-  console.log('street: '+street);
+  // console.log(beneficiary.address)
+  // const block = /blk\s*[0-9]+|block\s*[0-9]+/.exec(beneficiary.address.toLowerCase());
+  // beneficiary.address = beneficiary.address.replace(block, "");
+  // console.log(beneficiary.address)
+  // const street = beneficiary.address;
 
-  /**
-   * profile
-   * - race, religion, dietary, no children, num working adult, per capita income, household size
-   * 
-   * 
-   */
+  // console.log('unit: '+unit);
+  // console.log('block: '+block);
+  // console.log('street: '+street);
   
+  if (index % 2 == 0) { bg = 'bg-gray-100' }
+  else { bg = 'bg-white' }
+
   return (
-    <tr >
-      <td className="px-5 py-5 border bg-white text-sm">
+    <tr id={index} className={bg}>
+      <td className="px-5 py-5 border text-sm">
         <p className="text-center text-gray-900 whitespace-no-wrap">data.regionID</p>
       </td>
 
-      <td className="px-5 py-5 border bg-white text-sm">
-        <p className="text-center text-gray-900 whitespace-no-wrap">{street}</p>
+      <td className="px-5 py-5 border text-sm">
+        <p className="text-center text-gray-900 whitespace-no-wrap">{data.address.charAt(0).toUpperCase() + data.address.slice(1)}</p>
       </td>
 
-      <td className="px-5 py-5 border bg-white text-sm">
-        <p className="text-center text-gray-900 whitespace-no-wrap">{block}</p>
+      <td className="px-5 py-5 border text-sm">
+        <p className="text-center text-gray-900 whitespace-no-wrap"> {data.householdSize} </p>
       </td>
 
-      <td className="px-5 py-5 border bg-white text-sm">
-        <p className="text-center text-gray-900 whitespace-no-wrap"> Jan 21, 2020 </p>
+      <td className="px-5 py-5 border text-sm">
+        <p className="text-center text-gray-900 whitespace-no-wrap"> {data.race} </p>
       </td>
 
-      <td className="px-5 py-5 border bg-white text-sm">
-        <p className="text-center text-gray-900 whitespace-no-wrap"> Test </p>
+      <td className="px-5 py-5 border text-sm">
+        <p className="text-center text-gray-900 whitespace-no-wrap"> {data.religion} </p>
       </td>
 
-      <td className="px-5 py-5 border bg-white text-sm">
-        <p className="text-center text-gray-900 whitespace-no-wrap"> Test </p>
+      <td className="px-5 py-5 border text-sm">
+        <p className="text-center text-gray-900 whitespace-no-wrap"> {data.dietaryRestrictions} </p>
+      </td>
+      
+      <td className="px-5 py-5 border text-sm">
+        <p className="text-center text-gray-900 whitespace-no-wrap"> data.stock </p>
       </td>
 
-      <td className="px-5 py-5 border bg-white text-sm">
-        <p className="text-center text-gray-900 whitespace-no-wrap"> Test </p>
+      <td className="px-5 py-5 border text-sm">
+        <p className="text-center text-gray-900 whitespace-no-wrap"> data </p>
       </td>
     </tr>
   );
 }
 
 {
-  /* <td className="px-5 py-5 border bg-white text-sm">
+  /* <td className="px-5 py-5 border text-sm">
                     <div className="flex items-center">
                         <div className="flex-shrink-0 w-10 h-10">
                             <img className="w-full h-full rounded-full" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.2&w=160&h=160&q=80" alt="" />
@@ -66,7 +73,7 @@ export default function TableRow({ data, index }) {
 }
 
 {
-  /* <td className="px-5 py-5 border bg-white text-sm">
+  /* <td className="px-5 py-5 border text-sm">
                     <span
                         className="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
                         <span aria-hidden

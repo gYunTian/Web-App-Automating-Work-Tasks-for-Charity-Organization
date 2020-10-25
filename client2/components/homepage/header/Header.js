@@ -1,3 +1,4 @@
+import Link from 'next/link'
 
 class Header extends React.Component {
     render () {
@@ -8,19 +9,37 @@ class Header extends React.Component {
                 
                 <span className="text-xl text-black font-bold uppercase tracking-wide"> EBS G1T3 </span>
                 
-                <button className="text-black font-bold inline-flex p-3 rounded lg:hidden ml-auto hover:text-gray outline-none nav-toggler mr-2" data-target="#navigation">
+
+                <button type="button" className="text-black font-bold font-size text-l items-center justify-center inline-flex px-3 py-2 rounded lg:hidden ml-auto outline-none nav-toggler mr-2 hover:bg-gray-900 hover:text-white focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition ease-in-out duration-150" id="options-menu" aria-haspopup="true" aria-expanded="true">
                     <i className="material-icons">Menu</i>
                 </button>
-                
+                <div className="hidden origin-top-right absolute right-0 top-0 mt-12 w-56 rounded-md shadow-lg bg-gray-200">
+                <div className="">
+                <div className="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                    <a href="#" className="block w-full text-left px-4 py-2 text-sm leading-5 text-black font-bold text-center hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900" role="menuitem">Home </a>
+                    <a href="#" className="block w-full text-left px-4 py-2 text-sm leading-5 text-black font-bold text-center hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900" role="menuitem">Analytics </a>
+                    <a href="#" className="block w-full text-left px-4 py-2 text-sm leading-5 text-black font-bold text-center hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900" role="menuitem">Plan Schedule </a>
+                    <a href="#" className="block w-full text-left px-4 py-2 text-sm leading-5 text-black font-bold text-center hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900" role="menuitem">Diet </a>
+                    <a href="#" className="block w-full text-left px-4 py-2 text-sm leading-5 text-black font-bold text-center hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900" role="menuitem">Import data </a>
+                    <a href="#" className="block w-full text-left px-4 py-2 text-sm leading-5 text-black font-bold text-center hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900" role="menuitem">List </a>
+
+                </div>
+                </div>
+                </div>
+
                 <div className="hidden top-navbar w-full lg:inline-flex lg:flex-grow lg:w-auto" id="navigation">    
                     
                     <div className="lg:inline-flex lg:flex-row lg:ml-auto lg:w-auto w-full lg:items-center items-start  flex flex-col lg:h-auto mx-auto" >
+                        <Link href="/home">
                         <a href="#" className="mx-2 lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-black font-bold font-size text-l items-center justify-center hover:bg-gray-900 hover:text-white">
                             <span>Home</span>
                         </a>
+                        </Link>
+                        <Link href="/analytic">
                         <a href="#" className="mx-2 lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-black font-bold font-size text-l items-center justify-center hover:bg-gray-900 hover:text-white" >
                             <span>Analytics</span>
                         </a>
+                        </Link>
                         <a href="#" className="mx-2 lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-black font-bold font-size text-l items-center justify-center hover:bg-gray-900 hover:text-white" >
                             <span>Plan Schedule</span>
                         </a>
@@ -37,16 +56,19 @@ class Header extends React.Component {
                 </div>
 
 
-                    <div>
-                        <a href="#" className="mx-2 lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-black font-bold font-size text-l items-center justify-center hover:bg-gray-900 hover:text-white" >
-                            <span className=""> Logout </span>
-                        </a>
-                    </div>
-
-                
+                <div>
+                    <a href="#" className="mx-2 lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-black font-bold font-size text-l items-center justify-center hover:bg-gray-900 hover:text-white" >
+                        <span className=""> Logout </span>
+                    </a>
+                </div>
+            
             </nav>
             </div>
             </div>
+
+
+            
+
 
             // {/* <div classNameName="logo" ><a href="#" classNameName="logo-text"> TESTVV </a></div> */}
         
