@@ -1,5 +1,6 @@
 import Link from 'next/link'
-import Router from 'next/router'
+import Alert from "./alerts/Alert";
+import GreenAlert from "./alerts/GreenAlert";
 
 class RegisterForm extends React.Component {
     constructor(props){
@@ -9,11 +10,22 @@ class RegisterForm extends React.Component {
             'url': 'http://localhost:5000/api/register',
             'email': null,
             'name': null,
-            'password': null
+            'password': null,
+            'error': false,
+            'status': null,
+            'loading': false,
+            'register': false
         };
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    closeAlert = (e) => {
+        this.setState({
+            'error': false,
+            'register': false
+        })
     }
 
     handleChange = (e) => {
@@ -37,10 +49,9 @@ class RegisterForm extends React.Component {
     }
 
     handleSubmit = async (e) => {
+        this.props.setLoading();
+
         e.preventDefault();
-        console.log(this.state.email);
-        console.log(this.state.name);
-        console.log(this.state.password);
 
         const requestOptions = {
             method: 'POST',
@@ -52,51 +63,60 @@ class RegisterForm extends React.Component {
             })
         };
 
-        const response = await fetch(this.state.url, requestOptions);
-        const data = await response.json();
-
-        if (response.ok) {
-            console.log('prompt');
+        try {
+            const response = await fetch(this.state.url, requestOptions);
+            const data = await response.json();
+            
+            if (response.ok) {
+                this.setState({
+                    'register': true
+                })
+                console.log('prompt');
+            }
+            else {
+                // invalid params
+                console.log(data.status);
+                this.setState({
+                    'error': true,
+                    'status': "Email already exist!"
+                });
+            }
+        } catch (error) {
+            this.props.displayAlert;
+            console.log(error);
+            this.setState({
+                'error': true,
+                'status': "Register server might be down!"
+            });
         }
-        else {
-            console.log(data.status);
-        }
-
-        // fetch(this.state.url, requestOptions)
-        // .then(response => {
-        //     return response.json();
-        // })
-        // .then(responseData => {
-        //     console.log(responseData.status);
-        // })
-        // .catch(error => {
-        //     console.log("error: ", error);
-        // });
-
+        this.props.stopLoading();
     }   
 
     render () {
         return (
+            <div>
+                { this.state.error ? <Alert status={this.state.status} close={this.closeAlert}/> : null }
+                { this.state.register ? <GreenAlert status={this.state.status} close={this.closeAlert}/> : null }
             <form onSubmit={this.handleSubmit}>
                 <div className="mb-4">
                     <label className="block text-gray-700 text-sm font-bold mb-2">
                         Email
                     </label>
-                    <input onChange={this.handleChange} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="email" placeholder="Email" />
+                    <input required onChange={this.handleChange} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="email" placeholder="Email" />
                 </div>
                 
                 <div className="mb-4">
                     <label className="block text-gray-700 text-sm font-bold mb-2">
                         Name
                     </label>
-                    <input onChange={this.handleChange} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" placeholder="Name" />
+                    <input required onChange={this.handleChange} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" placeholder="Name" />
                 </div>
 
                 <div className="mb-6">
                     <label className="block text-gray-700 text-sm font-bold mb-2">
                         Password
                     </label>
-                    <input onChange={this.handleChange} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="register-password" type="password" placeholder="******************" autoComplete="off"/>
+                    <input required onChange={this.handleChange} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="register-password" type="password" placeholder="******************" autoComplete="off"/>
                     <p className="text-red-500 text-xs italic hidden">Please choose a password.</p>
                 </div>
 
@@ -105,6 +125,7 @@ class RegisterForm extends React.Component {
                     <Link href="#"><a className="lg:flex lg:justify-center font-bold text-sm text-blue-500 hover:text-blue-800 mt-5" href="#">Forgot Password?</a></Link>
                 </div>
             </form>
+            </div>
         )
     }
 }
