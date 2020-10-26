@@ -7,6 +7,7 @@ function MongoConnect(oAppenv) {
 
     if (oAppenv.isLocal === true) {
         let uri = "mongodb+srv://ebs:68911565@ebsmongo.ogfnk.mongodb.net/EBS-front?retryWrites=true&w=majority";
+        //let uri = "mongodb://1f86ebe5e4b0d98c10df7d0685e91bed:477d7084c3ff8497e047634706c883ad@10.11.31.120:27017,10.11.31.121:27017,10.11.31.122:27017/be836664983e8fa3?replicaSet=038b88c331069584fdab34dd661931a7";
         
         mongoose.connect(uri);
         var db = mongoose.connection;

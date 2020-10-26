@@ -8,11 +8,7 @@ module.exports = {
     './components/**/*.js'
   ],
   theme: {
-    extend: {
-      colors: {
-        'p-blue': '#6474af',
-      }
-    },
+    extend: {},
   },
   variants: {},
   plugins: [],

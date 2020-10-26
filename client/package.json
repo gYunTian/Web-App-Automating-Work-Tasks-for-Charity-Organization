@@ -1,5 +1,5 @@
 {
-  "name": "client2",
+  "name": "learn-starter",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -8,13 +8,12 @@
     "start": "next start"
   },
   "dependencies": {
-    "next": "9.5.5",
+    "gray-matter": "^4.0.2",
+    "next": "9.5.3",
     "postcss-flexbugs-fixes": "^4.2.1",
     "postcss-preset-env": "^6.7.0",
-    "react": "16.14.0",
-    "react-dom": "16.14.0",
-    "react-loading-overlay": "^1.0.1",
-    "react-table": "^7.6.0",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
     "tailwindcss": "^1.9.4"
   }
 }

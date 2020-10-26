@@ -1,38 +1,59 @@
-// import SearchFilter from "./SearchFilter";
-// import NavTools from "./NavTools";
+import SearchFilter from "./SearchFilter";
+import NavTools from "./NavTools";
 import { columns } from './Init';
-import { useTable, useSortBy } from "react-table";
+import { useTable, useSortBy, useFilters, useGlobalFilter } from "react-table";
 import React from "react";
 import classnames from 'classnames';
 
 //https://www.tailwindtoolbox.com/components/responsive-table
 //https://stackoverflow.com/questions/60304981/where-to-put-component-did-mount-in-my-next-js-file
 
+//https://blog.logrocket.com/building-styling-tables-react-table-v7/
+//https://codesandbox.io/s/react-table-7-sort-cpvwe?file=/src/RTable.js
+//https://medium.com/@blaiseiradukunda/react-table-7-tutorial-3d8ba6ac8b16
+
+
 export default function Table({ odata }) {
   let data = odata;
 
   const Table = ({ columns, data }) => {
+    const filterTypes = React.useMemo(
+      () => ({
+        text: (rows, id, filterValue) => {
+          return rows.filter(row => {
+            const rowValue = row.values[id];
+            return rowValue !== undefined
+              ? String(rowValue)
+                  .toLowerCase()
+                  .startsWith(String(filterValue).toLowerCase())
+              : true;
+          });
+        }
+      }),
+      []
+    );
+  
     const {
       getTableProps,
       getTableBodyProps,
       headerGroups,
       rows,
-      prepareRow
-    } = useTable(
-      {
-        columns,
-        data
-      },
-      useSortBy
-    );
+      prepareRow,
+      setGlobalFilter
+    } = useTable({columns,data,filterTypes},useFilters,useGlobalFilter,useSortBy,);
     
     return (
-      <table {...getTableProps()} className="table-auto border-collapse w-full lg:table-cell">
+      <div>
+      <SearchFilter setFilter={setGlobalFilter} />
+
+      <table {...getTableProps()} className="w-full table">
+      
       <thead>
         {headerGroups.map(headerGroup => (
           <tr {...headerGroup.getHeaderGroupProps()}>
             {headerGroup.headers.map(column => (
-              <th {...column.getHeaderProps(column.getSortByToggleProps())} className="text-center px-5 py-3 border-b-2 border-gray-200 bg-blue-200 text-left text-xs font-bold text-gray-800 uppercase lg:w-auto text-center border border-b block lg:table-cell relative lg:static lg:mb-10">
+              <th {...column.getHeaderProps(column.getSortByToggleProps())} className="text-center px-5 py-3 bg-gray-600 text-left text-xs font-semibold 
+              text-gray-800 uppercase tracking-wider w-full lg:w-auto text-center border border-b block lg:table-cell relative lg:static lg:mb-10">
                 {column.render("Header")}
                 <span>
                   {column.isSorted ? (column.isSortedDesc ? " 🔽" : " 🔼") : ""}
@@ -52,9 +73,9 @@ export default function Table({ odata }) {
           
           prepareRow(row);
           return (
-            <tr {...row.getRowProps()} id={i} className={classnames(bg, "hover:bg-gray-400 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0")}>
+            <tr {...row.getRowProps()} id={i} className={classnames(bg, "border hover:bg-gray-400 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0")}>
               {row.cells.map(cell => {
-                return <td className="px-5 py-5 border w-full lg:w-auto text-center border border-b block lg:table-cell relative lg:static" {...cell.getCellProps()}>
+                return <td className="px-5 py-5 w-full lg:w-auto text-center block lg:table-cell relative lg:static" {...cell.getCellProps()}>
                   <p className="text-center text-gray-900">
                     {cell.render("Cell")}
                   </p>  
@@ -65,6 +86,8 @@ export default function Table({ odata }) {
         })}
       </tbody>
       </table>
+      <NavTools/>
+      </div>
     );
   };
 
@@ -73,8 +96,8 @@ export default function Table({ odata }) {
     <div className="container mx-auto px-4 sm:px-8 mt-18">
       <div className="py-8 flex-grow flex-col flex justify-center bg-white shadow-lg rounded px-8 pt-6 pb-8 mb-4 mt-4">
 
-          <h2 className="text-2xl font-semibold leading-tigh text-center mb-4">
-            Beneficiaries
+          <h2 className="text-2xl font-semibold leading-tigh text-left">
+            Beneficiaries Data
           </h2>
 
         <Table columns={columns} data={odata} />
@@ -90,16 +113,6 @@ export default function Table({ odata }) {
 
 
 export async function getStaticProps() {
-  // stop fetch is not authenticated
-  // if (!useAuth.isAuthenticated) {
-  //   console.log('not authenticated, stopped fetch, return empty payload')
-  //   var data = {};
-  //   return {
-  //     props: {
-  //       data,
-  //     },
-  //   };
-  // }
   console.log("attempting to fetch data");
   
   //fetch odata

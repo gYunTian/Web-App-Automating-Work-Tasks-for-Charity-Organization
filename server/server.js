@@ -21,6 +21,7 @@ var path = process.env.MONGO_URI;
 
 try {
     // connect mongo
+    console.log('Connecting to mongo')
     mongoConnect(appEnv);
     
 } catch (error) {

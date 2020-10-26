@@ -1,3 +1,5 @@
+//https://dashboard.fauna.com/?first_session=true
+
 import Header from "../components/homepage/header/Header";
 import SubHeader from "../components/homepage/header/SubHeader";
 import Footer from "../components/front/Footer";
@@ -6,6 +8,7 @@ import withAuth from "../hocs/withAuth";
 import { useAuth } from "../providers/Auth";
 import LoadingOverlay from 'react-loading-overlay';
 
+// use back with auth
 export default function Home({ data }) {
   
   return (
