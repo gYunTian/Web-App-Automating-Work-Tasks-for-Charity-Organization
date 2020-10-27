@@ -15,7 +15,7 @@ export const AuthProvider = ({ children }) => {
   const [role, setRole] = React.useState("Test");
   const [isAuthenticated, setAuthenticated] = React.useState(false);
   const [isLoading, setLoading] = React.useState(true);
-
+  
   // verify cookie against server
   useEffect(() => {
     const initializeAuth = async () => {

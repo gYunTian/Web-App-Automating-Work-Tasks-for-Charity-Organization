@@ -2,7 +2,7 @@
 export const columns = [
   {
     Header: "Region",
-    accessor: "regionID",
+    accessor: "regionID_regionID",
     sortType: "basic"
   },
   {
@@ -37,7 +37,7 @@ export const columns = [
   },
   {
     Header: "Org",
-    accessor: "org",
+    accessor: "org_charityID",
     sortType: "basic"
   },
 ];

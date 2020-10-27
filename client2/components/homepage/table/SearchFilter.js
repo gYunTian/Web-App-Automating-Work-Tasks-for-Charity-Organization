@@ -1,18 +1,25 @@
+
 class SearchFilter extends React.Component {
   constructor(props) {
     super(props);
   }
 
-  render(setFilter) {
+  render(setFilter, goPrev, pageCount, canPrev, goNext, canNext, pageSize , setPageSize) {
+
     return (
       <div className="my-2 flex sm:flex-row flex-col">
         <div className="flex flex-row mb-1 sm:mb-0">
           <div className="relative">
-            <select className="appearance-none h-full rounded-l border block appearance-none w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
-              <option>5</option>
-              <option>10</option>
-              <option>20</option>
+            <select value={this.props.pageSize} onChange={(e) => {this.props.setPageSize(Number(e.target.value));}} className="appearance-none h-full 
+            rounded-l border block appearance-none w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none 
+            focus:bg-white focus:border-gray-500">
+            {[10, 20, 30, 50, 100].map((pageSize) => (
+              <option key={pageSize} value={pageSize}>
+                Show {pageSize}
+              </option>
+            ))}
             </select>
+
             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
               <svg
                 className="fill-current h-4 w-4"
@@ -58,6 +65,32 @@ class SearchFilter extends React.Component {
             }}
             className="hover:border-gray-500 appearance-none rounded-r rounded-l sm:rounded-l-none border border-gray-400 border-b block pl-8 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none"
           />
+        </div>
+        <div className="relative ml-auto">
+          <span className="mx-4 py-2">
+            Page{" "}
+            <strong>
+              {this.props.pageIndex + 1} of {this.props.pageOptionsLength}
+            </strong>{" "}
+          </span>
+            
+          <button
+            className="text-sm hover:bg-gray-500 text-gray-700 font-semibold 
+            py-2 px-4 appearance-none h-full rounded-l
+            bg-white text-gray-700 w-32 border-t border-l border-b border-gray-400"
+            onClick={() => this.props.goPrev()} disabled={!this.props.canPrev}
+          >
+            {"< Prev "}
+          </button>
+
+          <button
+            className="text-sm hover:bg-gray-500 text-gray-700 font-semibold 
+            py-2 px-4 appearance-none h-full
+            bg-white text-gray-700 w-32 rounded-r border-t border-r border-b border-gray-400"
+            onClick={() => this.props.goNext()} disabled={!this.props.canNext}
+          >
+            {"Next >"}
+          </button>
         </div>
       </div>
     );

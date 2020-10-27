@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import { useAuth } from '../providers/Auth';
 
+// components rendering twice is because of strict mode
 function DefaultLoadingFallback() {
   return <p>Loading...</p>;
 }
