@@ -1,30 +1,31 @@
-//https://dashboard.fauna.com/?first_session=true
-
 import Header from "../components/homepage/header/Header";
 import SubHeader from "../components/homepage/header/SubHeader";
 import Footer from "../components/front/Footer";
 import Table from "../components/homepage/table/Table";
 import withAuth from "../hocs/withAuth";
-import { useAuth } from "../providers/Auth";
-import LoadingOverlay from 'react-loading-overlay';
+import { getName, getRole, useIsAuthenticated } from "../providers/Auth";
 
 // use back with auth
-export default function Home({ data }) {
-  
+export default withAuth(function Home({ data }) {
+
+  const isAuthenticated = useIsAuthenticated();
+  const name = getName();
+  const role = getRole();
+
   return (
     <div className="flex flex-col h-screen">
       <Header />
 
-      <SubHeader />
+      <SubHeader name={name} role={role}/>
       
       <div className="antialiased bg-gray-200 flex-grow">
           <Table odata={data} />
       </div>
-    
+      
       <Footer />
     </div>
   );
-}
+})
 
 export async function getStaticProps() {
   // stop fetch is not authenticated

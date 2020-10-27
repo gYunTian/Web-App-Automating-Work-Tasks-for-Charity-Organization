@@ -1,7 +1,7 @@
 import SearchFilter from "./SearchFilter";
 import NavTools from "./NavTools";
 import { columns } from './Init';
-import { useTable, useSortBy, useFilters, useGlobalFilter } from "react-table";
+import { useTable, useSortBy, useFilters, useGlobalFilter, usePagination } from "react-table";
 import React from "react";
 import classnames from 'classnames';
 
@@ -15,7 +15,7 @@ import classnames from 'classnames';
 
 export default function Table({ odata }) {
   let data = odata;
-
+  
   const Table = ({ columns, data }) => {
     const filterTypes = React.useMemo(
       () => ({
@@ -39,20 +39,42 @@ export default function Table({ odata }) {
       headerGroups,
       rows,
       prepareRow,
-      setGlobalFilter
-    } = useTable({columns,data,filterTypes},useFilters,useGlobalFilter,useSortBy,);
+      setGlobalFilter,
+      page,
+      canPreviousPage,
+      canNextPage,
+      pageOptions,
+      pageCount,
+      gotoPage,
+      nextPage,
+      previousPage,
+      setPageSize,
+      state: { pageIndex, pageSize },
+
+    } = useTable({
+      columns,
+      data,
+      filterTypes,
+      initialState: { pageIndex: 0 }
+
+    },
+      useFilters,
+      useGlobalFilter,
+      useSortBy,
+      usePagination
+    );
     
     return (
       <div>
       <SearchFilter setFilter={setGlobalFilter} />
-
+      
       <table {...getTableProps()} className="w-full table">
       
       <thead>
         {headerGroups.map(headerGroup => (
           <tr {...headerGroup.getHeaderGroupProps()}>
             {headerGroup.headers.map(column => (
-              <th {...column.getHeaderProps(column.getSortByToggleProps())} className="text-center px-5 py-3 bg-gray-600 text-left text-xs font-semibold 
+              <th {...column.getHeaderProps(column.getSortByToggleProps())} className="hover:bg-gray-400 text-center px-5 py-3 bg-gray-600 text-left text-xs font-semibold 
               text-gray-800 uppercase tracking-wider w-full lg:w-auto text-center border border-b block lg:table-cell relative lg:static lg:mb-10">
                 {column.render("Header")}
                 <span>
@@ -66,7 +88,7 @@ export default function Table({ odata }) {
       
       <tbody {...getTableBodyProps()}>
         
-        {rows.map((row, i) => {
+        {page.map((row, i) => {
           let bg = 'bg-gray-100'
           if (i % 2 == 0) { bg = 'bg-gray-100' }
           else { bg = 'bg-white' }
@@ -87,6 +109,52 @@ export default function Table({ odata }) {
       </tbody>
       </table>
       <NavTools/>
+
+      <div>
+        <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
+          {"<<"}
+        </button>{" "}
+        <button onClick={() => previousPage()} disabled={!canPreviousPage}>
+          {"<"}
+        </button>{" "}
+        <button onClick={() => nextPage()} disabled={!canNextPage}>
+          {">"}
+        </button>{" "}
+        <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
+          {">>"}
+        </button>{" "}
+        <span>
+          Page{" "}
+          <strong>
+            {pageIndex + 1} of {pageOptions.length}
+          </strong>{" "}
+        </span>
+        <span>
+          | Go to page:{" "}
+          <input
+            type="number"
+            defaultValue={pageIndex + 1}
+            onChange={(e) => {
+              const page = e.target.value ? Number(e.target.value) - 1 : 0;
+              gotoPage(page);
+            }}
+            style={{ width: "100px" }}
+          />
+        </span>{" "}
+        <select
+          value={pageSize}
+          onChange={(e) => {
+            setPageSize(Number(e.target.value));
+          }}
+        >
+          {[10, 20, 30, 40, 50].map((pageSize) => (
+            <option key={pageSize} value={pageSize}>
+              Show {pageSize}
+            </option>
+          ))}
+        </select>
+      </div>
+
       </div>
     );
   };
@@ -120,7 +188,7 @@ export async function getStaticProps() {
     "https://smucf-dev-ebs-g1t3-srv.cfapps.us10.hana.ondemand.com/api/Beneficiary?$expand=regionID,Stocks"
   );
   var data = await response.json();
-  data = data.value;
+  Odata = data.value;
 
   console.log("Sucessfully fetched data");
   return {

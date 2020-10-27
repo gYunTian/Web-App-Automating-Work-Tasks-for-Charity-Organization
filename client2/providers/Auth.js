@@ -11,8 +11,8 @@ const AuthContext = React.createContext({
 
 // wraps around children component and add context
 export const AuthProvider = ({ children }) => {
-  const [name, setName] = React.useState(null);
-  const [role, setRole] = React.useState(null);
+  const [name, setName] = React.useState("Test");
+  const [role, setRole] = React.useState("Test");
   const [isAuthenticated, setAuthenticated] = React.useState(false);
   const [isLoading, setLoading] = React.useState(true);
 
@@ -33,6 +33,7 @@ export const AuthProvider = ({ children }) => {
           setLoading(false);
           setName(data.name);
           setRole(data.role);
+
         } else {
           console.log("not authenticated");
           setLoading(false);
@@ -44,7 +45,7 @@ export const AuthProvider = ({ children }) => {
     };
     initializeAuth();
   }, []);
-
+  
   return (
     <AuthContext.Provider value={{ isAuthenticated, isLoading, name, role }}>
       {children}
@@ -65,12 +66,12 @@ export function useIsAuthenticated() {
   return context.isAuthenticated;
 }
 
-// export function getName() {
-//   const context = useAuth();
-//   return context.name;
-// }
+export function getName() {
+  const context = useAuth();
+  return context.name;
+}
 
-// export function getrole() {
-//   const context = useAuth();
-//   return context.role;
-// }
+export function getRole() {
+  const context = useAuth();
+  return context.role;
+}

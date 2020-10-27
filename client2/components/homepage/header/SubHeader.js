@@ -1,16 +1,13 @@
-export default function SubHeader() {
+export default function SubHeader({name, role}) {
+
     return (
-        <nav className="bg-gray-800">
-            <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
-                
-                <div className="relative flex flex-row items-center justify-center h-10">
-                
-                    {/* <div className="text-gray-700 text-center bg-gray-400 px-4 py-2 m-2">1</div>
-                    <div className="text-gray-700 text-center bg-gray-400 px-4 py-2 m-2">2</div>
-                    <div className="text-gray-700 text-center bg-gray-400 px-4 py-2 m-2">3</div> */}
-                    
-                </div>
+        <div className="max-w-7xl bg-gray-800 ">
+            
+            <div className="flex items-center h-10 mx-auto container">
+                <span className="ml-auto text-l text-white float-right border-r-1 border-gray-400"> <p className="mx-4">Role: {role}</p> </span>
+                <span className="mx-4 text-l text-white float-right"> <p className="">Welcome back, {name}</p> </span>
+
             </div>
-        </nav>
+        </div>
     )
 }
