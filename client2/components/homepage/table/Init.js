@@ -1,6 +1,11 @@
 
 export const columns = [
   {
+    Header: "Id",
+    accessor: "beneficiaryID",
+    sortType: "basic"
+  },
+  {
     Header: "Region",
     accessor: "regionID_regionID",
     sortType: "basic"
