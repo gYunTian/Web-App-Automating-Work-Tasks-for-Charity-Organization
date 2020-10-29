@@ -48,7 +48,7 @@ class Header extends React.Component {
                         <a href="#" className="mx-2 lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-black font-bold font-size text-l items-center justify-center hover:bg-gray-900 hover:text-white" >
                             <span>Plan Schedule</span>
                         </a>
-                        <a href="#" className="mx-2 lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-black font-bold font-size text-l items-center justify-center hover:bg-gray-900 hover:text-white" >
+                        <a href="/diet" className="mx-2 lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-black font-bold font-size text-l items-center justify-center hover:bg-gray-900 hover:text-white" >
                             <span>Diet</span>
                         </a>
                         <a href="#" className="mx-2 lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-black font-bold font-size text-l items-center justify-center hover:bg-gray-900 hover:text-white" >
