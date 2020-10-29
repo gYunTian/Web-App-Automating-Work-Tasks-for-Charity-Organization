@@ -7,8 +7,8 @@ class SearchFilter extends React.Component {
   render(setFilter, goPrev, pageCount, canPrev, goNext, canNext, pageSize , setPageSize) {
 
     return (
-      <div className="my-2 flex sm:flex-row flex-col">
-        <div className="flex flex-row mb-1 sm:mb-0">
+      <div className="my-2 flex flex-wrap">
+        <div className="flex mb-1 sm:mb-0">
           <div className="relative">
             <select value={this.props.pageSize} onChange={(e) => {this.props.setPageSize(Number(e.target.value));}} className="appearance-none h-full 
             rounded-l border block appearance-none w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none 
@@ -50,7 +50,7 @@ class SearchFilter extends React.Component {
         </div>
 
         <div className="block relative">
-          <span className="h-full absolute inset-y-0 left-0 flex items-center pl-2">
+          <span className="h-full absolute inset-y-0 left-0 flex items-center pl-2 ">
             <svg
               viewBox="0 0 24 24"
               className="h-4 w-4 fill-current text-gray-500"

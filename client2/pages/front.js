@@ -34,15 +34,15 @@ class front extends React.Component {
         <div />
         <div className="h-auto">
           <div className="container mx-auto">
-            <div className="lg:flex lg:justify-center">
+            <div className="flex justify-center">
               <img
-                src="/images/profile.png"
+                src="/images/logo2.png"
                 alt={name}
                 className="object-scale-down h-48"
               />
             </div>
 
-            <div className="lg:flex lg:justify-center">
+            <div className="sm:flex sm:justify-center">
               <MainForm setLoading={this.setLoading} stopLoading={this.stopLoading} />
             </div>
           </div>

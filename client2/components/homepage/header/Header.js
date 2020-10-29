@@ -8,7 +8,7 @@ class Header extends React.Component {
             <nav className="flex items-center p-3 flex-wrap">
                 <span className="flex flex-row content-center border-r-1 border-gray-400">
                 <img
-                    src="images/logo.png"
+                    src="images/logo2.png"
                     className="h-6 block mx-2"
                     alt="logo"
                 />

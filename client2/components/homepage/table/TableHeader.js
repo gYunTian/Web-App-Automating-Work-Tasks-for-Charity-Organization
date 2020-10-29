@@ -1,37 +1,49 @@
+import { KeyboardArrowUp, KeyboardArrowDown } from "@material-ui/icons";
 
 
-export default function TableHeader() {
+export default function TableHeader(headerGroups) {
+
+  return (
+    <thead>
+      {headerGroups.headerGroups.map((headerGroup) => (
+        
+        <tr {...headerGroup.getHeaderGroupProps()}>
+          {headerGroup.headers.map((column) => (
+              hideIdCol(column)        
+          ))}
+        </tr>
+      ))}
+    </thead>
+  );
+}
+
+const hideIdCol = (column) => {
+  if (column.Header != "Id") {
     return (
-        <thead>
-            <tr>
-                <th className="text-center px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">
-                    Region
-                </th>
-                
-                <th className="text-center px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                    Street
-                </th>
-
-                <th className="text-center px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                    Blk No
-                </th>
-
-                <th className="text-center px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                    Unit No
-                </th>
-                
-                <th className="text-center px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                    Profile 
-                </th>
-
-                <th className="text-center px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                    Stock Lvl
-                </th>
-
-                <th className="text-center px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                    Org
-                </th>
-            </tr>
-        </thead>
+      <th
+        {...column.getHeaderProps(column.getSortByToggleProps())}
+        className="px-4 py-2 h-12 hover:bg-gray-400 text-center bg-gray-600 text-left text-xs font-semibold 
+        text-gray-800 uppercase tracking-wider lg:w-auto border border-b block lg:table-cell relative lg:static lg:mb-10"
+      >
+        {column.render("Header")}
+        <span>
+          {column.isSorted ? (
+            column.isSortedDesc ? (
+              <KeyboardArrowDown />
+            ) : (
+              <KeyboardArrowUp />
+            )
+          ) : (
+            ""
+          )}
+        </span>
+      </th>
     )
+  }
+  else {
+    // kill off id col
+    return (
+      <th className="hidden" key={column.Header}></th>
+    )
+  }
 }

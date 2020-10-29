@@ -50,7 +50,62 @@ export async function getStaticProps() {
   );
   var data = await response.json();
   data = data.value;
+  
 
+  // final object for prediction
+  let stocks = {
+    data: []
+  };
+  let order = ['id', 'house', 'biscuit', 'Egg','vege','rice','canned','beverage','instant','bread'];
+
+  for (var i = 0; i < data.length; i++) {
+    // if have stock
+    if (data[i].Stocks.length != 0) {
+      let innerData = { "id": data[i].beneficiaryID, "house": data[i].householdSize};
+      let ordered = {};
+      for (var k = 0; k < data[i].Stocks.length; k ++) {
+        innerData[data[i].Stocks[k].stock_stockID] = data[i].Stocks[k].stockCount;
+      };
+
+      // ordering
+      for (var k = 0; k < order.length; k ++) {
+        ordered[order[k]] = typeof(innerData[order[k]]) == "undefined" ? 0 : innerData[order[k]];
+      }
+      stocks.data.push(ordered);
+
+    }
+  }
+  // console.log(stocks);
+
+
+  console.log("Querying prediction api")
+  let options = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(stocks),
+  }
+  var prediction;
+
+  try {
+    let prediction = await fetch("http://127.0.0.1:5000/api/predict", options);
+    prediction = await prediction.json();
+    var map = new Map()
+    for (var i = 0; i < prediction.length; i ++) {
+      map.set(prediction[i]['id'], prediction[i]['result']);
+    }
+    
+    for (let i = 0; i < data.length; i++) {
+      // if have stock
+      if (data[i].Stocks.length != 0) {
+        data[i].stock = map.get(data[i].beneficiaryID);
+      }
+      console.log(data[i]);
+    }
+  } catch (error) {
+    console.log("Error posting to prediction api");
+    console.log(error);
+  }
+  
   console.log("Sucessfully fetched data");
   return {
     props: {
