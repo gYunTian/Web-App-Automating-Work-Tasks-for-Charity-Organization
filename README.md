@@ -4,15 +4,17 @@
 
 cd and npm install:
 
-``````bash
+```bash
 cd client2
 npm install
 npm run dev
+```
 
 ESLint & Prettier installation
-`````bash
+
+```bash
 Install ESlint Extension on VSCode : vscode:extension/dbaeumer.vscode-eslint
 Install Prettier Extension on VSCode : vscode:extension/esbenp.prettier-vscode
 cd client2
 npm install
-``````
+```
