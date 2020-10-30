@@ -1,56 +1,59 @@
-import React, { Component } from "react";
-import FoodBasketButton from "./Buttons/FoodBasketButton.js";
+import { Container } from '@material-ui/core';
+import React, { Component } from 'react';
+import FoodBasketButton from './Buttons/FoodBasketButton.js';
+import MainCard from './Cards/MainCard.js';
+import BasketCard from './Cards/BasketCard.js';
 
 class Basket extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            data : props.data,
-            showBasket : false,
-            basketItems: null,
-            onToggleFoodItem: false
-        };
+	constructor(props) {
+		super(props);
+		this.state = {
+			data: props.data,
+			basketItems: null,
+		};
 
-        this.expandBasket = this.expandBasket.bind(this)
-    }
+		this.expandBasket = this.expandBasket.bind(this);
+		this.resetShowBasket = this.resetShowBasket.bind(this);
+	}
 
-    expandBasket(id, foodItems) {
-        const toggled = this.state.showBasket ? false : true;
-        this.setState({showBasket: toggled,
-        basketItems: foodItems});
-    }
+	resetShowBasket() {
+		this.setState({ basketItems: null });
+	}
+	expandBasket(foodItems) {
+		this.setState({ basketItems: foodItems });
+	}
 
-    toggleAddRemove() {
-        const toggled = this.state.onToggleFoodItem ? false : true;
-        this.setState({onToggleFoodItem: toggled});
-    }
-    render() {
-        const {data, showBasket, basketItems} = this.state;
-        return (
-            <div>
-                {data.map((item) => 
-            <div key = {item.BasketID}>
-                <span>
-                    <FoodBasketButton onClick={() => this.expandBasket(item.BasketID, item.stocks)}>{item.name}</FoodBasketButton>
-                </span>
-            </div>
-            )}
-            <div> 
-                {showBasket && basketItems.map((item) => 
-                <div key={item.stock_stockID}>
-                    <span>
-                        {item.stock_stockID}
-                    </span>
-                    <span>
-                        {item.quantity}
-                    </span>
-                </div>
-                )}
-            </div>
-        </div>
-        )
-    }
+	render() {
+		const { data, basketItems } = this.state;
+		console.log(basketItems);
+		return (
+			<div>
+				<div
+					style={{
+						display: 'inline-block',
+						marginTop: '5%',
+						marginLeft: '5%',
+					}}
+				>
+					<FoodBasketButton onClick={() => this.resetShowBasket()}>
+						Reset
+					</FoodBasketButton>
+					<MainCard onClick={this.expandBasket} data={data} />
+				</div>
+				<div
+					style={{
+						display: 'inline-block',
+						marginTop: '5%',
+						marginLeft: '25%',
+					}}
+				>
+					{basketItems && basketItems.length !== 0 && (
+						<BasketCard data={basketItems}></BasketCard>
+					)}
+				</div>
+			</div>
+		);
+	}
 }
-
 
 export default Basket;
