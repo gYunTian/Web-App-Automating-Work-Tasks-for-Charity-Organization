@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "eslint-check": "eslint --print-config src/main.js | eslint-config-prettier-check"
   },
   "dependencies": {
     "@material-ui/core": "^4.11.0",
@@ -18,5 +19,12 @@
     "react-loading-overlay": "^1.0.1",
     "react-table": "^7.6.1",
     "tailwindcss": "^1.9.6"
+  },
+  "devDependencies": {
+    "eslint": "^7.12.1",
+    "eslint-config-prettier": "^6.15.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.21.5",
+    "prettier": "^2.1.2"
   }
 }
