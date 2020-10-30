@@ -16,7 +16,7 @@ export default withAuth(function Home({ data }) {
   return (
     <div className="flex flex-col h-screen">
       <Header />
-      
+    
       <SubHeader name={name} role={role}/>
       
       <div className="antialiased bg-gray-200 flex-grow">
@@ -44,12 +44,23 @@ export async function getStaticProps() {
   console.log("attempting to fetch data");
   
   //fetch odata
-  const response = await fetch(
-    //"https://smucf-dev-ebs-g1t3-srv.cfapps.us10.hana.ondemand.com/api/Beneficiary"
-    "https://smucf-dev-ebs-g1t3-srv.cfapps.us10.hana.ondemand.com/api/Beneficiary?$expand=regionID,Stocks"
-  );
-  var data = await response.json();
-  data = data.value;
+  try {
+    const response = await fetch(
+      //"https://smucf-dev-ebs-g1t3-srv.cfapps.us10.hana.ondemand.com/api/Beneficiary"
+      "https://smucf-dev-ebs-g1t3-srv.cfapps.us10.hana.ondemand.com/api/Beneficiary?$expand=regionID,Stocks"
+    );
+    var data = await response.json();
+    data = data.value;
+  } catch (error) {
+    let data = {}
+    console.log("Error fetching odata")
+    return {
+      props: {
+        data,
+      },
+      revalidate: 3600
+    };
+  }
   
 
   // final object for prediction
@@ -57,6 +68,8 @@ export async function getStaticProps() {
     data: []
   };
   let order = ['id', 'house', 'biscuit', 'Egg','vege','rice','canned','beverage','instant','bread'];
+  let today = new Date();
+  today = today.getMonth()+'/'+today.getDate()+'/'+today.getFullYear();
 
   for (var i = 0; i < data.length; i++) {
     // if have stock
@@ -72,10 +85,10 @@ export async function getStaticProps() {
         ordered[order[k]] = typeof(innerData[order[k]]) == "undefined" ? 0 : innerData[order[k]];
       }
       stocks.data.push(ordered);
-
+      data[i].delivery = today;
     }
+    // console.log(data[i]);
   }
-  // console.log(stocks);
 
 
   console.log("Querying prediction api")
@@ -99,11 +112,11 @@ export async function getStaticProps() {
       if (data[i].Stocks.length != 0) {
         data[i].stock = map.get(data[i].beneficiaryID);
       }
-      console.log(data[i]);
+      // console.log(data[i]);
     }
   } catch (error) {
     console.log("Error posting to prediction api");
-    console.log(error);
+    // console.log(error);
   }
   
   console.log("Sucessfully fetched data");
