@@ -1,4 +1,5 @@
 import classnames from 'classnames';
+import CssToolTip from './CssToolTip';
 
 export default function TableBody({ page, prepareRow }) {
 
@@ -14,11 +15,12 @@ export default function TableBody({ page, prepareRow }) {
         return (
           <tr {...row.getRowProps()} id={row.cells[0].value} className={classnames(bg, "border hover:bg-gray-400 flex lg:table-row flex-wrap mb-1 mt-1 lg:mb-0")}>
             {row.cells.map(cell => {
-              if (cell.column.Header == "Stock lvl" && cell.row.original.delivery) {
+              if (cell.column.Header == "Stock lvl" && cell.row.original.delivery != null) {
 
                 let cl = cell.value < 14 ? cell.value < 5 ? "bg-red-400" : "bg-yellow-400" : "bg-green-400"
                 let tl = cell.value < 14 ? cell.value < 5 ? "text-red-800" : "text-yellow-800" : "text-green-800"
-
+                console.log(cell.value);
+                
                 return <td className="px-5 py-5 lg:table-cell" {...cell.getCellProps()}>
                   <span className={classnames(tl,"relative block text-center px-2 py-2 font-semibold leading-tight")}>
                       <span aria-hidden className={classnames(cl,"absolute inset-0 opacity-50 rounded-full")}></span>
@@ -33,9 +35,7 @@ export default function TableBody({ page, prepareRow }) {
                 return <td className="px-5 py-5 lg:table-cell" {...cell.getCellProps()}>
                   {
                     typeof(cell.value) != "undefined" || cell.value != null || cell.value != "" ? 
-                      <p className="text-center text-red-900 underline font-semibold">
-                      {cell.value}
-                      </p>
+                      <CssToolTip data={cell.value} text={"Generic Restriction Text"}/>
                     :
                     <p className="text-center text-gray-900">
                       {"None"}

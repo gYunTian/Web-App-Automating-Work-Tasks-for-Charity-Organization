@@ -100,7 +100,8 @@ export async function getStaticProps() {
   var prediction;
 
   try {
-    let prediction = await fetch("http://127.0.0.1:5000/api/predict", options);
+    // let prediction = await fetch("http://127.0.0.1:5000/api/predict", options);
+    let prediction = await fetch("https://g1t3-foodstock-quick-wallaby-xx.cfapps.us10.hana.ondemand.com/api/predict", options);
     prediction = await prediction.json();
     var map = new Map()
     for (var i = 0; i < prediction.length; i ++) {
