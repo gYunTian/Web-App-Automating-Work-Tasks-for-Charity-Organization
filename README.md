@@ -13,8 +13,8 @@ npm run dev
 ESLint & Prettier installation
 
 ```bash
-Install ESlint Extension on VSCode : vscode:extension/dbaeumer.vscode-eslint
-Install Prettier Extension on VSCode : vscode:extension/esbenp.prettier-vscode
+[Install ESlint Extension on VSCode](vscode:extension/dbaeumer.vscode-eslint)
+[Install Prettier Extension on VSCode](vscode:extension/esbenp.prettier-vscode)
 cd client2
 npm install
 ```
