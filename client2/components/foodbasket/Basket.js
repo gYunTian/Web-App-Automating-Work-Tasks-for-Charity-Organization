@@ -27,13 +27,21 @@ class Basket extends Component {
 	render() {
 		const { data, basketItems } = this.state;
 		return (
-			<Container margin='50'>
-				<MainCard
-					onClick={this.expandBasket}
-					clickReset={this.resetShowBasket}
-					data={data}
-				/>
-			</Container>
+			<Grid
+				container
+				direction='row'
+				justify='flex-start'
+				alignItems='flex-start'
+			>
+				<Grid item>
+					<MainCard
+						onClick={this.expandBasket}
+						clickReset={this.resetShowBasket}
+						data={data}
+					/>
+				</Grid>
+				<Grid item>hello</Grid>
+			</Grid>
 		);
 	}
 }

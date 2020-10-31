@@ -50,7 +50,6 @@ export async function getStaticProps() {
 	data = data.value;
 
 	console.log('Sucessfully fetched data');
-	console.log(data);
 	return {
 		props: {
 			data,
