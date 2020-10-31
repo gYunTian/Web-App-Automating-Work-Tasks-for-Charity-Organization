@@ -14,7 +14,7 @@ export default function MainCard({
 		<Card>
 			<Grid container>
 				<Grid item>
-					<CardHeader title='Presets' />
+					<CardHeader title={children} />
 				</Grid>
 				<Grid item>
 					<FoodBasketButton onClick={() => clickReset()}>
@@ -23,11 +23,12 @@ export default function MainCard({
 				</Grid>
 			</Grid>
 			<CardContent>
-				{data.map((item) => (
-					<FoodBasketButton onClick={() => onClick(item.stocks)}>
-						{item.name}
-					</FoodBasketButton>
-				))}
+				{data &&
+					data.map((item) => (
+						<FoodBasketButton key={item.BasketID} onClick={() => onClick(item)}>
+							{item.name}
+						</FoodBasketButton>
+					))}
 			</CardContent>
 		</Card>
 	);

@@ -7,7 +7,6 @@ const FoodBasketButton = ({ onClick, className = '', children }) => (
 			fullWidth='true'
 			onClick={onClick}
 			className={className}
-			type='button'
 		>
 			{children}
 		</Button>

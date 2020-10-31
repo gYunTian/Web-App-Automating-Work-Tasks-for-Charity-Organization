@@ -43,13 +43,21 @@ export async function getStaticProps() {
 	console.log('attempting to fetch data');
 
 	//fetch odata
-	const response = await fetch(
-		'https://smucf-dev-ebs-g1t3-srv.cfapps.us10.hana.ondemand.com/api/Basket?$expand=stocks'
-	);
-	var data = await response.json();
-	data = data.value;
-
+	const [basket, allStocks] = await Promise.all([
+		fetch(
+			'https://smucf-dev-ebs-g1t3-srv.cfapps.us10.hana.ondemand.com/api/Basket?$expand=stocks'
+		)
+			.then((r) => r.json())
+			.then((j) => j.value),
+		fetch(
+			'https://smucf-dev-ebs-g1t3-srv.cfapps.us10.hana.ondemand.com/api/Stock'
+		)
+			.then((r) => r.json())
+			.then((j) => j.value),
+	]);
+	const data = { basket, allStocks };
 	console.log('Sucessfully fetched data');
+	// console.log(basket, allStocks);
 	return {
 		props: {
 			data,
