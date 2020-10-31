@@ -1,8 +1,9 @@
-import { Container } from '@material-ui/core';
+import { Grid, Container } from '@material-ui/core';
 import React, { Component } from 'react';
 import FoodBasketButton from './Buttons/FoodBasketButton.js';
 import MainCard from './Cards/MainCard.js';
 import BasketCard from './Cards/BasketCard.js';
+// import styles from './Basket.module.css';
 
 class Basket extends Component {
 	constructor(props) {
@@ -25,33 +26,14 @@ class Basket extends Component {
 
 	render() {
 		const { data, basketItems } = this.state;
-		console.log(basketItems);
 		return (
-			<div>
-				<div
-					style={{
-						display: 'inline-block',
-						marginTop: '5%',
-						marginLeft: '5%',
-					}}
-				>
-					<FoodBasketButton onClick={() => this.resetShowBasket()}>
-						Reset
-					</FoodBasketButton>
-					<MainCard onClick={this.expandBasket} data={data} />
-				</div>
-				<div
-					style={{
-						display: 'inline-block',
-						marginTop: '5%',
-						marginLeft: '25%',
-					}}
-				>
-					{basketItems && basketItems.length !== 0 && (
-						<BasketCard data={basketItems}></BasketCard>
-					)}
-				</div>
-			</div>
+			<Container margin='50'>
+				<MainCard
+					onClick={this.expandBasket}
+					clickReset={this.resetShowBasket}
+					data={data}
+				/>
+			</Container>
 		);
 	}
 }

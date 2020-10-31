@@ -1,14 +1,27 @@
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
-import { makeStyles } from '@material-ui/core/styles';
 import FoodBasketButton from '../Buttons/FoodBasketButton.js';
-import { Block } from '@material-ui/icons';
+import { Grid } from '@material-ui/core';
 
-export default function MainCard({ onClick = '', data, children }) {
+export default function MainCard({
+	onClick = '',
+	clickReset = '',
+	data,
+	children,
+}) {
 	return (
 		<Card>
-			<CardHeader style={{ backgroundColor: 'primary' }} title='Presets' />
+			<Grid container>
+				<Grid item>
+					<CardHeader title='Presets' />
+				</Grid>
+				<Grid item>
+					<FoodBasketButton onClick={() => clickReset()}>
+						Reset
+					</FoodBasketButton>
+				</Grid>
+			</Grid>
 			<CardContent>
 				{data.map((item) => (
 					<FoodBasketButton onClick={() => onClick(item.stocks)}>

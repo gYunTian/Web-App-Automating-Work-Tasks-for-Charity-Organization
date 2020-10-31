@@ -1,17 +1,30 @@
-import Card from '@material-ui/core/Card';
+import { Card, Grid, Paper, Box } from '@material-ui/core';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
-import { makeStyles } from '@material-ui/core/styles';
-import FoodBasketButton from '../Buttons/FoodBasketButton.js';
-import { Block } from '@material-ui/icons';
+import IncrementDecrementButton from '../Buttons/IncrementDecrementButton.js';
 
 export default function BasketCard({ onClick = '', data, children }) {
 	return (
 		<Card>
-			<CardHeader style={{ backgroundColor: 'primary' }} title='Food Items' />
+			<CardHeader title='Food Items' />
 			<CardContent>
 				{data.map((item) => (
-					<div key={item.stock_stockID}>{item.stock_name}</div>
+					<Grid
+						container
+						direction='row'
+						justify='space-evenly'
+						alignItems='center'
+					>
+						<Grid>
+							<IncrementDecrementButton>-</IncrementDecrementButton>
+						</Grid>
+						<Grid item>
+							<Paper key={item.stock_stockID}>{item.stock_name}</Paper>
+						</Grid>
+						<Grid>
+							<IncrementDecrementButton>+</IncrementDecrementButton>
+						</Grid>
+					</Grid>
 				))}
 			</CardContent>
 		</Card>

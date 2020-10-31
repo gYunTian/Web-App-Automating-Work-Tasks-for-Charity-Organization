@@ -8,7 +8,6 @@ const FoodBasketButton = ({ onClick, className = '', children }) => (
 			onClick={onClick}
 			className={className}
 			type='button'
-			style={{ textAlign: 'left' }}
 		>
 			{children}
 		</Button>
