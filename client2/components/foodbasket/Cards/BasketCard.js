@@ -4,8 +4,9 @@ import CardContent from '@material-ui/core/CardContent';
 import FoodBasketButton from '../Buttons/FoodBasketButton.js';
 
 export default function BasketCard({
-	onClick = '',
+	onClickRemove = '',
 	onClickEdit = '',
+	onClickSave = '',
 	data,
 	children,
 }) {
@@ -20,6 +21,11 @@ export default function BasketCard({
 						Enable Editing
 					</FoodBasketButton>
 				</Grid>
+				<Grid item>
+					<FoodBasketButton onClick={() => onClickSave()}>
+						Save
+					</FoodBasketButton>
+				</Grid>
 			</Grid>
 			<CardContent>
 				{data !== null && data.length !== 0 ? (
@@ -28,7 +34,7 @@ export default function BasketCard({
 							<Grid item>
 								<Grid container>
 									<Grid item>
-										<FoodBasketButton oncClick=''>
+										<FoodBasketButton onClick={() => onClickRemove(item)}>
 											{item.stock_name}
 										</FoodBasketButton>
 									</Grid>

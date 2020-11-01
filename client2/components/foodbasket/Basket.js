@@ -19,6 +19,8 @@ class Basket extends Component {
 		this.resetShowBasket = this.resetShowBasket.bind(this);
 		this.showAllStocks = this.showAllStocks.bind(this);
 		this.handleIncrement = this.handleIncrement.bind(this);
+		this.handleDecrement = this.handleDecrement.bind(this);
+		this.saveBasket = this.saveBasket.bind(this);
 	}
 
 	resetShowBasket() {
@@ -40,8 +42,13 @@ class Basket extends Component {
 	}
 
 	handleIncrement(item) {
-		const id = item.stockID;
 		const { basketItems, selectedBasket } = this.state;
+
+		if (basketItems === null) {
+			return;
+		}
+
+		const id = item.stockID;
 		const itemExist = basketItems.filter((obj) => obj.stock_stockID === id);
 		if (itemExist && itemExist.length) {
 			const updatedBasket = basketItems.map((obj) => {
@@ -52,6 +59,7 @@ class Basket extends Component {
 				}
 			});
 			this.setState({ basketItems: updatedBasket });
+			return;
 		} else {
 			const updatedItem = {
 				quantity: 1,
@@ -59,21 +67,72 @@ class Basket extends Component {
 				stock_stockID: id,
 				stock_name: item.name,
 			};
-			if (basketItems.length === null) {
-				this.setState({ basketItems: [].push(updatedItem) });
-				console.log('0 length updated');
-			} else {
-				const updatedBasket = [...basketItems, updatedItem];
-				this.setState({ basketItems: updatedBasket });
-			}
+			const updatedBasket = [...basketItems, updatedItem];
+			this.setState({ basketItems: updatedBasket });
+			return;
 		}
 	}
 
 	handleDecrement(item) {
-		const id = item.stockID;
-		const { basketItems, selectedBasket } = this.state;
+		const { basketItems, selectedBasket, editMode } = this.state;
+		if (!editMode) {
+			return;
+		}
+
+		const id = item.stock_stockID;
+		const itemToUpdate = basketItems.filter(
+			(obj) => obj.stock_stockID === id
+		)[0];
+
+		if (itemToUpdate.quantity === 1) {
+			const updatedBasket = basketItems.filter(
+				(obj) => obj.stock_stockID !== id
+			);
+			this.setState({ basketItems: updatedBasket });
+			return;
+		} else {
+			const updatedBasket = basketItems.map((obj) => {
+				if (obj.stock_stockID === id) {
+					return { ...obj, quantity: obj.quantity - 1 };
+				} else {
+					return obj;
+				}
+			});
+			this.setState({ basketItems: updatedBasket });
+		}
 	}
 
+	saveBasket() {
+		const { basket, basketItems, selectedBasket, editMode } = this.state;
+		console.log(selectedBasket);
+		console.log(basket);
+		const basketToUpdate = basket.find(
+			(item) => item.BasketID === selectedBasket
+		);
+		console.log(basketToUpdate);
+		const updatedBasket = { ...basketToUpdate, stocks: basketItems };
+		console.log(updatedBasket);
+		const updatedAllBaskets = basket.map((item) => {
+			if (item.BasketID === selectedBasket) {
+				return updatedBasket;
+			} else {
+				return item;
+			}
+		});
+		this.setState({ basket: updatedAllBaskets, editMode: false });
+		const url =
+			'https://smucf-dev-ebs-g1t3-srv.cfapps.us10.hana.ondemand.com/api/Basket/' +
+			selectedBasket;
+		fetch(url, {
+			headers: { 'Content-Type': 'application/json' },
+			method: 'PUT',
+			body: JSON.stringify({
+				BasketID: selectedBasket,
+				name: basketToUpdate.name,
+				stocks: basketToUpdate.stocks,
+			}),
+		});
+	}
 	render() {
 		const { basket, allStocks, basketItems, editMode } = this.state;
 		return (
@@ -94,7 +153,12 @@ class Basket extends Component {
 					</MainCard>
 				</Grid>
 				<Grid item>
-					<BasketCard onClickEdit={this.showAllStocks} data={basketItems}>
+					<BasketCard
+						onClickEdit={this.showAllStocks}
+						onClickRemove={this.handleDecrement}
+						onClickSave={this.saveBasket}
+						data={basketItems}
+					>
 						Food Items
 					</BasketCard>
 				</Grid>
