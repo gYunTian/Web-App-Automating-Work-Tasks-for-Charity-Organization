@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import MainCard from './Cards/MainCard.js';
 import BasketCard from './Cards/BasketCard.js';
 import StockCard from './Cards/StockCard.js';
+import uuid from 'react-uuid';
+import { TodayOutlined } from '@material-ui/icons';
 
 class Basket extends Component {
 	constructor(props) {
@@ -21,6 +23,7 @@ class Basket extends Component {
 		this.handleIncrement = this.handleIncrement.bind(this);
 		this.handleDecrement = this.handleDecrement.bind(this);
 		this.saveBasket = this.saveBasket.bind(this);
+		this.createBasket = this.createBasket.bind(this);
 	}
 
 	resetShowBasket() {
@@ -104,14 +107,10 @@ class Basket extends Component {
 
 	saveBasket() {
 		const { basket, basketItems, selectedBasket, editMode } = this.state;
-		console.log(selectedBasket);
-		console.log(basket);
 		const basketToUpdate = basket.find(
 			(item) => item.BasketID === selectedBasket
 		);
-		console.log(basketToUpdate);
 		const updatedBasket = { ...basketToUpdate, stocks: basketItems };
-		console.log(updatedBasket);
 		const updatedAllBaskets = basket.map((item) => {
 			if (item.BasketID === selectedBasket) {
 				return updatedBasket;
@@ -120,19 +119,31 @@ class Basket extends Component {
 			}
 		});
 		this.setState({ basket: updatedAllBaskets, editMode: false });
-		const url =
-			'https://smucf-dev-ebs-g1t3-srv.cfapps.us10.hana.ondemand.com/api/Basket/' +
-			selectedBasket;
-		fetch(url, {
-			headers: { 'Content-Type': 'application/json' },
-			method: 'PUT',
-			body: JSON.stringify({
-				BasketID: selectedBasket,
-				name: basketToUpdate.name,
-				stocks: basketToUpdate.stocks,
-			}),
-		});
 	}
+	createBasket(e) {
+		if (e.key !== 'Enter') {
+			return;
+		}
+		const { basket } = this.state;
+		console.log(basket);
+		const id = uuid.v4();
+		console.log(id);
+		// TODO: create new basket
+	}
+	// PUT API
+	// const url =
+	// 	'https://smucf-dev-ebs-g1t3-srv.cfapps.us10.hana.ondemand.com/api/Basket/' +
+	// 	selectedBasket;
+	// fetch(url, {
+	// 	headers: { 'Content-Type': 'application/json' },
+	// 	method: 'PUT',
+	// 	body: JSON.stringify({
+	// 		BasketID: selectedBasket,
+	// 		name: basketToUpdate.name,
+	// 		stocks: basketToUpdate.stocks,
+	// 	}),
+	// });
+
 	render() {
 		const { basket, allStocks, basketItems, editMode } = this.state;
 		return (
@@ -148,6 +159,7 @@ class Basket extends Component {
 						onClick={this.expandBasket}
 						clickReset={this.resetShowBasket}
 						data={basket}
+						createBasket={this.createBasket}
 					>
 						Presets
 					</MainCard>
@@ -167,7 +179,9 @@ class Basket extends Component {
 						increment={this.handleIncrement}
 						checker={editMode}
 						data={allStocks}
-					></StockCard>
+					>
+						All Stocks
+					</StockCard>
 				</Grid>
 			</Grid>
 		);

@@ -13,7 +13,7 @@ export default function StockCard({
 	return (
 		<Card>
 			<Grid container>
-				<CardHeader title='Food Items' />
+				<CardHeader title={children} />
 			</Grid>
 			<CardContent>
 				{checker && data ? (

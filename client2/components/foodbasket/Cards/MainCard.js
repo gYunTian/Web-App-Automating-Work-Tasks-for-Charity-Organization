@@ -2,11 +2,12 @@ import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import FoodBasketButton from '../Buttons/FoodBasketButton.js';
-import { Grid } from '@material-ui/core';
+import { Grid, TextField } from '@material-ui/core';
 
 export default function MainCard({
 	onClick = '',
 	clickReset = '',
+	createBasket = '',
 	data,
 	children,
 }) {
@@ -29,6 +30,12 @@ export default function MainCard({
 							{item.name}
 						</FoodBasketButton>
 					))}
+				<TextField
+					id='outlined-basic'
+					label='Create Preset'
+					variant='outlined'
+					onKeyDown={(e) => createBasket(e)}
+				></TextField>
 			</CardContent>
 		</Card>
 	);
