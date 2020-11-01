@@ -14,14 +14,22 @@ export default function withAuthRedirect({
 }) {
   const WithAuthRedirectWrapper = props => {
     const router = useRouter();
+    
     const { isLoading, isAuthenticated } = useAuth();
-    // if (isLoading) {
-    //   return <LoadingComponent />;
-    // }
+    if (isLoading) {
+      return <LoadingComponent />;
+    }
+
     if (typeof window !== 'undefined' && expectedAuth !== isAuthenticated) {
+      console.log('logged in? '+isAuthenticated);
       router.push(location);
       return <></>;
     }
+    // else {
+    //   // from login page
+    //   console.log("logged in");
+    //   router.push('/home');
+    // }
     return <WrappedComponent {...props} />;
   };
   

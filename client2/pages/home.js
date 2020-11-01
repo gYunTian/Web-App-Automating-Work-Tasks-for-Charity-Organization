@@ -3,12 +3,12 @@ import SubHeader from '../components/homepage/header/SubHeader';
 import Footer from '../components/front/Footer';
 import Table from '../components/homepage/table/Table';
 import withAuth from '../hocs/withAuth';
-import { getName, getRole, useIsAuthenticated } from '../providers/Auth';
+import { getName, getRole, useIsAuthenticated, useAuth } from '../providers/Auth';
 
 // use back with auth
 export default withAuth(function Home({ data }) {
 	console.log('one');
-
+	
 	const isAuthenticated = useIsAuthenticated();
 	const name = getName();
 	const role = getRole();
@@ -30,19 +30,12 @@ export default withAuth(function Home({ data }) {
 
 // To-do: Cache request data
 // https://stackoverflow.com/questions/62005208/api-caching-for-next-js
-export async function getStaticProps() {
-	// stop fetch is not authenticated
-	// if (!useAuth.isAuthenticated) {
-	//   console.log('not authenticated, stopped fetch, return empty payload')
-	//   var data = {};
-	//   return {
-	//     props: {
-	//       data,
-	//     },
-	//   };
-	// }
-	console.log('attempting to fetch data');
 
+// known bug
+// fetches data even if not logged in
+export async function getStaticProps() {
+
+	console.log('attempting to fetch data');
 	//fetch odata
 	try {
 		const response = await fetch(

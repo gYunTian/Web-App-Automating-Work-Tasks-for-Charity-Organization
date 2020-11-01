@@ -5,19 +5,11 @@ const registerController = require('../controllers/register/registerController')
 
 const router = express.Router();
 
-/**
- * @swagger
- * /api/auth/generate:
- *   get:
- *    description:  
- */
-
 // Auth route
 router.get(
     '/auth/generate', 
     authController.authenticate
 );
-
 
 /**
  * @swagger

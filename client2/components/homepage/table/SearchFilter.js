@@ -79,7 +79,7 @@ class SearchFilter extends React.Component {
 						className='hover:border-gray-500 appearance-none rounded-r rounded-l sm:rounded-l-none border border-gray-400 border-b block pl-8 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none'
 					/>
 				</div>
-				<div className='relative ml-auto'>
+				<div className='relative ml-auto flex'>
 					<span className='mx-4 py-2'>
 						Page{' '}
 						<strong>
@@ -88,7 +88,7 @@ class SearchFilter extends React.Component {
 					</span>
 
 					<button
-						className='text-sm hover:bg-gray-500 text-gray-700 font-semibold 
+						className='flex-end text-sm hover:bg-gray-500 text-gray-700 font-semibold 
             py-2 px-4 appearance-none h-full rounded-l
             bg-white text-gray-700 w-32 border-t border-l border-b border-gray-400'
 						onClick={() => this.props.goPrev()}
@@ -98,7 +98,7 @@ class SearchFilter extends React.Component {
 					</button>
 
 					<button
-						className='text-sm hover:bg-gray-500 text-gray-700 font-semibold 
+						className='flex-end text-sm hover:bg-gray-500 text-gray-700 font-semibold 
             py-2 px-4 appearance-none h-full
             bg-white text-gray-700 w-32 rounded-r border-t border-r border-b border-gray-400'
 						onClick={() => this.props.goNext()}

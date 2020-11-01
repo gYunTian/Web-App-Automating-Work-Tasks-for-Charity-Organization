@@ -1,6 +1,7 @@
 const User = require('../../models/user.model')
+require('dotenv').config()
 
-//const generateToken = require('./path/to/generateToken');
+const generateToken = require('../../auth/generateCookie');
 
 async function login(req, res) {
 
@@ -17,13 +18,14 @@ async function login(req, res) {
         }
         
         console.log(email, password, 'logged in');
-
+        console.log('creating cookie');
+        await generateToken(res, email, user.name);
         res.status(200).end(JSON.stringify({
             'status': 'user logged in',
             'email': email,
             'name': user.name
-
         }));
+        console.log('access cookie created successfully');
 
     } catch (error) {
         console.log('Error logging in user');

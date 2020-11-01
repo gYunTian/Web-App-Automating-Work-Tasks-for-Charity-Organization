@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { Home, BarChart, ListAlt, Fastfood, ImportExport, List, ArrowForward } from '@material-ui/icons';
 import DropDownMenu from './DropDownMenu';
+import Router from 'next/router'
 
 class Header extends React.Component {
     constructor() {
@@ -9,6 +10,7 @@ class Header extends React.Component {
             openMenu: false,
         }
         this.onBlur = this.onBlur.bind(this);
+        this.onLogout = this.onLogout.bind(this);
     }
 
     onBlur = () => {
@@ -16,6 +18,14 @@ class Header extends React.Component {
             openMenu: false
         });
         console.log(this.state.openMenu);
+    }
+
+    onLogout = async () => {
+        // let url = 'https://g1t3-node-auth-srv.cfapps.us10.hana.ondemand.com/api/auth/clear';
+        let url = 'http://localhost:5000/api/auth/clear';
+        console.log("attempting to logout");
+        const response = await fetch(url, {credentials: 'include'});
+        Router.push('/front');
 
     }
 
@@ -71,7 +81,9 @@ class Header extends React.Component {
 
 
                 <div>
-                    <a href="#" className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-black font-bold font-size text-l items-center justify-center hover:bg-gray-900 hover:text-white" >
+                    <a href="#" className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-black font-bold font-size text-l items-center justify-center hover:bg-gray-900 hover:text-white" 
+                    onClick={this.onLogout}
+                    >
                         <ArrowForward className="py-1"/><span className=""> Logout </span>
                     </a>
                 </div>

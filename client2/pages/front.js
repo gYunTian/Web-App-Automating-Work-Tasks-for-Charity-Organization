@@ -5,29 +5,31 @@ import Footer from "../components/front/Footer";
 import MainForm from "../components/front/MainForm";
 import LoadingOverlay from "react-loading-overlay";
 
-const name = "Logo";
-
 class front extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       'loading': false,
     };
   }
 
-  setLoading = loading => {
+  setLoading = () => {
+    console.log("set loading");
     this.setState({
       'loading': true,
     })
   }
 
-  stopLoading = loading => {
+  stopLoading = () => {
+    console.log("stop loading");
     this.setState({
       'loading': false,
     })
   }
-
+  
   render() {
+    // const { isLoading, isAuthenticated } = useAuth();
+
     return (
       <LoadingOverlay active={this.state.loading} spinner text='Please wait...'>
       <div className="flex flex-col h-screen justify-between">
@@ -37,7 +39,7 @@ class front extends React.Component {
             <div className="flex justify-center">
               <img
                 src="/images/logo2.png"
-                alt={name}
+                alt="Logo"
                 className="object-scale-down h-48"
               />
             </div>

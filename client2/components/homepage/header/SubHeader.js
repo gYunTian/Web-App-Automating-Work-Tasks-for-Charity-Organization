@@ -10,7 +10,9 @@ export default function SubHeader({ name, role }) {
 					style={{ color: 'white' }}
 				/>
 				<span className='text-l text-white float-right border-r-1 border-gray-400'>
-					<p className='mr-2 ml-1'>Role: {role}</p>{' '}
+					<p className='mr-2 ml-1'>
+						{role == "" ? "Not set" : "Role: " +role}
+					</p>{' '}
 				</span>
 
 				<span className='ml-2 text-l text-white float-right cursor-pointer'>

@@ -1,5 +1,5 @@
 const User = require('../../models/user.model')
-
+const axios = require('axios');
 //const generateToken = require('./path/to/generateToken');
 
 async function register(req, res) {
@@ -39,6 +39,17 @@ async function register(req, res) {
 
     }
     
+    axios.post('https://smucf-dev-ebs-g1t3-srv.cfapps.us10.hana.ondemand.com/api/User', {
+        email: email,
+        name: name,
+        userType: null
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
     // save user to odata
     // https://smucf-dev-ebs-g1t3-srv.cfapps.us10.hana.ondemand.com/
 }

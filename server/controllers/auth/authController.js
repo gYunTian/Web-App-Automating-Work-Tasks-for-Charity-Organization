@@ -5,21 +5,17 @@ const fs = require('fs');
 const path = require('path');
 
 exports.authenticate = async (req, res) => {
-    
-    //const { email, name, role } = req.body;
+    console.log("authenticate")
+    const { email, name, role } = req.body;
     try {
         console.log('creating cookie');
-        
-        let payload = {'email': 'test_email', 'name': 'test_name', 'role': 'volunteer'};
-        
         //access token      
         let accessToken = jwt.sign(
-            payload, 
+            {'email': email, 'name': name, 'role': role}, 
             process.env.PRIVATE_KEY, {
             algorithm: "RS256",
             expiresIn: '7d'
         });
-        
         console.log('access cookie created successfully');
 
         res.cookie("AuthEbsToken", accessToken, {secure: false, httpOnly: true})
@@ -38,10 +34,12 @@ exports.verify = async (req, res, next) => {
     console.log('verifying cookie');
 
     try {
-
+        // console.log(req.cookies['AuthEbsToken']);
+        // console.log(req.cookies);
         let token = req.cookies['AuthEbsToken'];
         
         if (!token) {
+            console.log()
             console.log('Not logged in');
             return res.status(401).json('You need to login!');
         }
@@ -49,9 +47,9 @@ exports.verify = async (req, res, next) => {
         let pkey = fs.readFileSync(path.join(__dirname, 'public.pem'));
         let payload = await jwt.verify(token, pkey);
         
-        console.log('email : '+payload.email);
-        console.log('name : '+payload.name);
-        console.log('role : '+payload.role);
+        // console.log('email : '+payload.email);
+        // console.log('name : '+payload.name);
+        // console.log('role : '+payload.role);
         console.log('cookie checked successfully');
 
         res.setHeader('Content-Type', 'application/json');
