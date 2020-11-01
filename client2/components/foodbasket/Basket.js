@@ -29,7 +29,10 @@ class Basket extends Component {
 		});
 	}
 	expandBasket(item) {
-		this.setState({ basketItems: item.stocks, selectedBasket: item.BasketID });
+		this.setState({
+			basketItems: item.stocks,
+			selectedBasket: item.BasketID,
+		});
 	}
 
 	showAllStocks() {
