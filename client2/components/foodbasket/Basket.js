@@ -11,8 +11,8 @@ class Basket extends Component {
 			basket: props.data.basket,
 			allStocks: props.data.allStocks,
 			basketItems: null,
-			showAllFood: false,
 			selectedBasket: null,
+			editMode: false,
 		};
 
 		this.expandBasket = this.expandBasket.bind(this);
@@ -25,7 +25,7 @@ class Basket extends Component {
 		this.setState({
 			selectedBasket: null,
 			basketItems: null,
-			showAllFood: false,
+			editMode: false,
 		});
 	}
 	expandBasket(item) {
@@ -33,16 +33,13 @@ class Basket extends Component {
 	}
 
 	showAllStocks() {
-		this.setState({ showAllFood: true });
+		this.setState({ editMode: true });
 	}
 
 	handleIncrement(item) {
 		const id = item.stockID;
 		const { basketItems, selectedBasket } = this.state;
-		console.log(item);
-		console.log(basketItems);
 		const itemExist = basketItems.filter((obj) => obj.stock_stockID === id);
-		console.log(itemExist);
 		if (itemExist && itemExist.length) {
 			const updatedBasket = basketItems.map((obj) => {
 				if (obj.stock_stockID === id) {
@@ -59,20 +56,23 @@ class Basket extends Component {
 				stock_stockID: id,
 				stock_name: item.name,
 			};
-			console.log(updatedItem);
 			if (basketItems.length === null) {
 				this.setState({ basketItems: [].push(updatedItem) });
 				console.log('0 length updated');
 			} else {
-				const updatedBasket = { ...basketItems, updatedItem };
-				console.log(updatedBasket);
+				const updatedBasket = [...basketItems, updatedItem];
 				this.setState({ basketItems: updatedBasket });
 			}
 		}
 	}
 
+	handleDecrement(item) {
+		const id = item.stockID;
+		const { basketItems, selectedBasket } = this.state;
+	}
+
 	render() {
-		const { basket, allStocks, basketItems, showAllFood } = this.state;
+		const { basket, allStocks, basketItems, editMode } = this.state;
 		return (
 			<Grid
 				container
@@ -91,14 +91,14 @@ class Basket extends Component {
 					</MainCard>
 				</Grid>
 				<Grid item>
-					<BasketCard onClick={this.showAllStocks} data={basketItems}>
+					<BasketCard onClickEdit={this.showAllStocks} data={basketItems}>
 						Food Items
 					</BasketCard>
 				</Grid>
 				<Grid item>
 					<StockCard
 						increment={this.handleIncrement}
-						checker={showAllFood}
+						checker={editMode}
 						data={allStocks}
 					></StockCard>
 				</Grid>

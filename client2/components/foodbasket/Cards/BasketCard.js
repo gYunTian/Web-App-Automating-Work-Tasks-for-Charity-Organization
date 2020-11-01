@@ -3,16 +3,20 @@ import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import FoodBasketButton from '../Buttons/FoodBasketButton.js';
 
-export default function BasketCard({ onClick = '', data, children }) {
+export default function BasketCard({
+	onClick = '',
+	onClickEdit = '',
+	data,
+	children,
+}) {
 	return (
 		<Card>
-			{/* <CardHeader title='Food Items' /> */}
 			<Grid container>
 				<Grid item>
 					<CardHeader title={children} />
 				</Grid>
 				<Grid item>
-					<FoodBasketButton onClick={() => onClick()}>
+					<FoodBasketButton onClick={() => onClickEdit()}>
 						Enable Editing
 					</FoodBasketButton>
 				</Grid>
@@ -24,7 +28,9 @@ export default function BasketCard({ onClick = '', data, children }) {
 							<Grid item>
 								<Grid container>
 									<Grid item>
-										<FoodBasketButton>{item.stock_name}</FoodBasketButton>
+										<FoodBasketButton oncClick=''>
+											{item.stock_name}
+										</FoodBasketButton>
 									</Grid>
 									<Grid item>
 										<Typography>{item.quantity}</Typography>
