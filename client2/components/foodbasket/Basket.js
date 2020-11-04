@@ -147,12 +147,15 @@ class Basket extends Component {
 	render() {
 		const { basket, allStocks, basketItems, editMode } = this.state;
 		return (
+			<div className='container mx-auto px-4 sm:px-8 mt-18 flex-grow h-full'>
+			<div className='py-8 flex-grow flex-col flex bg-white shadow-lg rounded px-8 pt-6 pb-8 mb-4 mt-4 h-auto'>
 			<Grid
 				container
 				direction='row'
 				justify='flex-start'
 				alignItems='flex-start'
 				spacing={4}
+				className = 'flex flex-row'
 			>
 				<Grid item>
 					<MainCard
@@ -164,6 +167,7 @@ class Basket extends Component {
 						Presets
 					</MainCard>
 				</Grid>
+
 				<Grid item>
 					<BasketCard
 						onClickEdit={this.showAllStocks}
@@ -174,6 +178,7 @@ class Basket extends Component {
 						Food Items
 					</BasketCard>
 				</Grid>
+
 				<Grid item>
 					<StockCard
 						increment={this.handleIncrement}
@@ -183,7 +188,10 @@ class Basket extends Component {
 						All Stocks
 					</StockCard>
 				</Grid>
+				
 			</Grid>
+			</div>
+			</div>
 		);
 	}
 }

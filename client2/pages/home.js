@@ -18,7 +18,7 @@ export default withAuth(function Home({ data }) {
 			<Header />
 
 			<SubHeader name={name} role={role} />
-
+		
 			<div className='antialiased bg-gray-200 flex-grow'>
 				<Table odata={data} />
 			</div>

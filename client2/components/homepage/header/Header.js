@@ -59,20 +59,27 @@ class Header extends React.Component {
                             <Home className="py-1" /><span>Home</span>
                         </a>
                         </Link>
+
                         <Link href="/analytic">
                         <a href="#" className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-black font-bold font-size text-l items-center justify-center hover:bg-gray-900 hover:text-white" >
                             <BarChart className="py-1" /><span>Analytics</span>
                         </a>
                         </Link>
+                        <Link href="/schedule">
                         <a href="#" className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-black font-bold font-size text-l items-center justify-center hover:bg-gray-900 hover:text-white" >
                             <ListAlt className="py-1" /><span>Plan Schedule</span>
                         </a>
+                        </Link>
+                        <Link href="/diet">
                         <a href="/diet" className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-black font-bold font-size text-l items-center justify-center hover:bg-gray-900 hover:text-white" >
                             <Fastfood className="py-1" /><span>Diet</span>
                         </a>
+                        </Link>
+                        <Link href="/import">
                         <a href="#" className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-black font-bold font-size text-l items-center justify-center hover:bg-gray-900 hover:text-white" >
                             <ImportExport className="py-1" /><span>Import Data</span>
                         </a>
+                        </Link>
                         <a href="#" className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-black font-bold font-size text-l items-center justify-center hover:bg-gray-900 hover:text-white" >
                             <List className="py-1"/><span>List</span>
                         </a>

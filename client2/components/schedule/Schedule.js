@@ -8,13 +8,13 @@ const Schedule = ({schedule}) => {
             <span>{schedule.title}</span>
             <div>
                 <button className="btn-edit task-btn" onClick={() => findItem(schedule.id)}>
-                    <i className="fas fa-pen">Edit</i>
+                    <i className="fas fa-pen hover:bg-gray-400 px-2 py-2">Edit</i>
                 </button>
                 <button
                     className="btn-delete task-btn"
                     onClick={() => removeTask(schedule.id)}
                 >
-                    <i className="fas fa-trash-alt">Delete</i>
+                    <i className="fas fa-trash-alt hover:bg-gray-400 px-2 py-2">Delete</i>
                 </button>
 
                 
