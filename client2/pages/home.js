@@ -25,7 +25,7 @@ export default withAuth(function Home({ data }) {
 			return { memory, merge: true }
 		}
 	}
-	
+
 	return (
 		<div className='flex flex-col h-screen'>	
 

@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Home, BarChart, ListAlt, Fastfood, ImportExport, List, ArrowForward } from '@material-ui/icons';
+import { Home, BarChart, ListAlt, Fastfood, ImportExport, List, ArrowForward, SupervisorAccount } from '@material-ui/icons';
 import DropDownMenu from './DropDownMenu';
 import Router from 'next/router'
 
@@ -83,6 +83,11 @@ class Header extends React.Component {
                         <a href="#" className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-black font-bold font-size text-l items-center justify-center hover:bg-gray-900 hover:text-white" >
                             <List className="py-1"/><span>List</span>
                         </a>
+                        <Link href="/admin">
+                        <a href="#" className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-black font-bold font-size text-l items-center justify-center hover:bg-gray-900 hover:text-white" >
+                            <SupervisorAccount className="py-1"/><span>Admin</span>
+                        </a>
+                        </Link>
                     </div>
                 </div>
 
