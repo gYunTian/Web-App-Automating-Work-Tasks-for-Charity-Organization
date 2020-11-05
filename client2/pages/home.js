@@ -1,9 +1,13 @@
+//https://github.com/SAPConversationalAI/Webchat
+
 import Header from '../components/homepage/header/Header';
 import SubHeader from '../components/homepage/header/SubHeader';
 import Footer from '../components/front/Footer';
 import Table from '../components/homepage/table/Table';
 import withAuth from '../hocs/withAuth';
 import { getName, getRole, useIsAuthenticated, useAuth } from '../providers/Auth';
+import { useState } from 'react';
+import Head from 'next/head'
 
 // use back with auth
 export default withAuth(function Home({ data }) {
@@ -12,15 +16,42 @@ export default withAuth(function Home({ data }) {
 	const isAuthenticated = useIsAuthenticated();
 	const name = getName();
 	const role = getRole();
+	const [send, setSend] = useState([]);
+	var unique = Array.from(new Set(send));
 
+	window.webchatMethods = {
+		getMemory: (conversationId) => {
+			const memory = { ids: unique }
+			return { memory, merge: true }
+		}
+	}
+	
 	return (
-		<div className='flex flex-col h-screen'>
+		<div className='flex flex-col h-screen'>	
+
+			<Head>
+				<script
+				src="https://cdn.cai.tools.sap/webchat/webchat.js"
+				// channelId={process.env.CHANNEL_ID}
+				// token={process.env.TOKEN}	
+				// exposing credentials
+				channelId="410590c5-18d4-483f-b510-4ce74feac089"
+				token="2fffea9e69dda5b5e0a310e686961d96"
+				id="cai-webchat">
+				</script>
+			</Head>
+
 			<Header />
 
 			<SubHeader name={name} role={role} />
-		
+			
 			<div className='antialiased bg-gray-200 flex-grow'>
-				<Table odata={data} />
+				<div className='container mx-auto px-4 sm:px-8 mt-18'>
+
+					<Table odata={data} send={send}/>
+						
+				</div>
+
 			</div>
 
 			<Footer />
@@ -98,36 +129,38 @@ export async function getStaticProps() {
 		// console.log(data[i]);
 	}
 
-	console.log('Querying prediction api');
-	let options = {
-		method: 'POST',
-		headers: { 'Content-Type': 'application/json' },
-		body: JSON.stringify(stocks),
-	};
-	var prediction;
-
-	try {
-		// let prediction = await fetch("http://127.0.0.1:5000/api/predict", options);
-		let prediction = await fetch(
-			'https://g1t3-foodstock-quick-wallaby-xx.cfapps.us10.hana.ondemand.com/api/predict',
-			options
-		);
-		prediction = await prediction.json();
-		var map = new Map();
-		for (var i = 0; i < prediction.length; i++) {
-			map.set(prediction[i]['id'], prediction[i]['result']);
-		}
-
-		for (let i = 0; i < data.length; i++) {
-			// if have stock
-			if (data[i].Stocks.length != 0) {
-				data[i].stock = map.get(data[i].beneficiaryID);
+	if (stocks.length > 0) {
+		console.log('Querying prediction api');
+		let options = {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify(stocks),
+		};
+		var prediction;
+	
+		try {
+			// let prediction = await fetch("http://127.0.0.1:5000/api/predict", options);
+			let prediction = await fetch(
+				'https://g1t3-foodstock-quick-wallaby-xx.cfapps.us10.hana.ondemand.com/api/predict',
+				options
+			);
+			prediction = await prediction.json();
+			var map = new Map();
+			for (var i = 0; i < prediction.length; i++) {
+				map.set(prediction[i]['id'], prediction[i]['result']);
 			}
-			// console.log(data[i]);
+	
+			for (let i = 0; i < data.length; i++) {
+				// if have stock
+				if (data[i].Stocks.length != 0) {
+					data[i].stock = map.get(data[i].beneficiaryID);
+				}
+				// console.log(data[i]);
+			}
+		} catch (error) {
+			console.log('Error posting to prediction api');
+			console.log(error);
 		}
-	} catch (error) {
-		console.log('Error posting to prediction api');
-		// console.log(error);
 	}
 
 	console.log('Sucessfully fetched data');

@@ -18,11 +18,11 @@ import Tablefooter from './TableFooter';
 //https://codesandbox.io/s/react-table-7-sort-cpvwe?file=/src/RTable.js
 //https://medium.com/@blaiseiradukunda/react-table-7-tutorial-3d8ba6ac8b16
 
-export default function Table({ odata }) {
+export default function Table({ odata, send }) {
 	let count = odata.length;
 	let data = odata;
 	// console.log(data);
-
+	
 	const Table = ({ columns, data }) => {
 		const filterTypes = React.useMemo(
 			() => ({
@@ -94,6 +94,7 @@ export default function Table({ odata }) {
 						page={page}
 						prepareRow={prepareRow}
 						{...getTableBodyProps()}
+						send={send}
 					/>
 				</table>
 				<Tablefooter count={count} />
@@ -102,14 +103,11 @@ export default function Table({ odata }) {
 	};
 
 	return (
-		<div className='container mx-auto px-4 sm:px-8 mt-18'>
 			<div className='py-8 flex-grow flex-col flex justify-center bg-white shadow-lg rounded px-8 pt-6 pb-8 mb-4 mt-4'>
 				<h2 className='text-2xl font-semibold leading-tigh text-left'>
 					Beneficiaries Data
 				</h2>
-
-				<Table columns={columns} data={odata} />
+					<Table columns={columns} data={odata} />
 			</div>
-		</div>
 	);
 }

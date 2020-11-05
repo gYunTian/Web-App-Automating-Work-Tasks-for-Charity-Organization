@@ -2,6 +2,7 @@ const express = require('express');
 const authController = require('../controllers/auth/authController');
 const loginController = require('../controllers/login/loginController');
 const registerController = require('../controllers/register/registerController');
+const reviewController = require('../controllers/review/reviewController');
 
 const router = express.Router();
 
@@ -57,6 +58,18 @@ router.post(
 router.post(
     '/register',
     registerController.register
+);
+
+/**
+ * @swagger
+ * /api/review:
+ *   post:
+ *    description:  
+ */
+
+router.post(
+    '/review',
+    reviewController.review
 );
 
 module.exports = router;

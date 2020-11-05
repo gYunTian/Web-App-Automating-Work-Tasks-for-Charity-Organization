@@ -1,6 +1,6 @@
 ---
 applications:
-- name: G1T3-node-auth-srv
+- name: G1T3-n-srv
   path: ./server
   buildpack: nodejs_buildpack
   memory: 256M
