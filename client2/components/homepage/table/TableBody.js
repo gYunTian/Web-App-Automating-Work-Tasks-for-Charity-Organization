@@ -31,24 +31,25 @@ export default function TableBody({ page, prepareRow, send }) {
 							) {
 								if (cell.value < 14) {
 									if (cell.value < 5) {
-										let cl = 'bg-red-400';
+										var cl = 'bg-red-400';
 										send.push(row.cells[0].value);
 									}
 									else {
-										let cl = 'bg-yellow-400';	
+										var cl = 'bg-yellow-400';	
 										// med.push(row.cells[0].value);
 									}
 								}
 								else {
-									let cl = 'bg-green-400';
+									var cl = 'bg-green-400';
 								}
+								
 								let tl =
 									cell.value < 14
 										? cell.value < 5
 											? 'text-red-800'
 											: 'text-yellow-800'
 										: 'text-green-800';
-								console.log(cell.value);
+								// console.log(cell.value);
 
 								return (
 									<td

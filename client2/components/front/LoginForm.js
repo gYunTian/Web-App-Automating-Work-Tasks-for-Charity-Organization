@@ -44,9 +44,11 @@ export default function LoginForm({setLoading, stopLoading}) {
 
         try {
             const response = await fetch(url, requestOptions);
-            
             if (response.ok) {
+                const data = await response.json();
                 console.log("logged in");
+                auth.setName(data.email);
+                auth.setRole(data.role);
                 auth.setAuth(true);
                 Router.push('/home')
             }

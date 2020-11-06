@@ -6,7 +6,7 @@ const UserSchema = new Schema ({
     email: { type: String, unique: true, required: true},
     name: { type: String, required: true},
     password: { type: String, required: true},
-    role: { type: String, default: 'Volunteer'}, // By default all users are volunteers
+    role: { type: String, default: null}, // By default all users are volunteers
     createdDate: { type: Date, default: Date.now}
 
 })

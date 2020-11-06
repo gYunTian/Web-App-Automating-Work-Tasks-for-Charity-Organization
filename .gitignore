@@ -12,3 +12,4 @@
 #ignored
 ./client
 ./server/.env
+./client2/.env

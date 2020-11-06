@@ -17,11 +17,12 @@ export default withAuth(function Home({ data }) {
 	const name = getName();
 	const role = getRole();
 	const [send, setSend] = useState([]);
-	var unique = Array.from(new Set(send));
-
+	console.log(name);
+	console.log(role);
+	
 	window.webchatMethods = {
 		getMemory: (conversationId) => {
-			const memory = { ids: unique }
+			const memory = { ids: Array.from(new Set(send)) }
 			return { memory, merge: true }
 		}
 	}
@@ -41,7 +42,7 @@ export default withAuth(function Home({ data }) {
 				</script>
 			</Head>
 
-			<Header />
+			<Header name={name} role={role} />
 
 			<SubHeader name={name} role={role} />
 			
@@ -65,7 +66,7 @@ export default withAuth(function Home({ data }) {
 // known bug
 // fetches data even if not logged in
 export async function getStaticProps() {
-
+	
 	console.log('attempting to fetch data');
 	//fetch odata
 	try {

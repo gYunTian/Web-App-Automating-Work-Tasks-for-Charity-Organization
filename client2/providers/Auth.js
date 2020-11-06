@@ -16,10 +16,11 @@ const AuthContext = React.createContext({
 
 // wraps around children component and add context
 export const AuthProvider = ({ children }) => {
-	const [name, setName] = React.useState('Test');
-	const [role, setRole] = React.useState('Test');
+	const [name, setName] = React.useState(null);
+	const [role, setRole] = React.useState(null);
 	const [isAuthenticated, setAuthenticated] = React.useState(false);
 	const [isLoading, setLoading] = React.useState(true);
+	
 	const setAuth = (value) => setAuthenticated(value);
 
 	// verify cookie against server
@@ -41,7 +42,8 @@ export const AuthProvider = ({ children }) => {
 					setAuthenticated(true);
 					setLoading(false);
 					setName(data.name);
-					setRole(data.role);
+					let role = data.role;
+					setRole(role);
 
 				} else {
 					console.log(response);
@@ -59,7 +61,7 @@ export const AuthProvider = ({ children }) => {
 	}, []);
 
 	return (
-		<AuthContext.Provider value={{ isAuthenticated, isLoading, name, role, setAuth }}>
+		<AuthContext.Provider value={{ isAuthenticated, isLoading, name, role, setAuth, setName, setRole }}>
 			{children}
 		</AuthContext.Provider>
 	);

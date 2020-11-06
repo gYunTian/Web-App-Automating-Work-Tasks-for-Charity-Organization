@@ -19,11 +19,12 @@ async function login(req, res) {
         
         console.log(email, password, 'logged in');
         console.log('creating cookie');
-        await generateToken(res, email, user.name);
+        await generateToken(res, email, user.name, user.role);
         res.status(200).end(JSON.stringify({
             'status': 'user logged in',
             'email': email,
-            'name': user.name
+            'name': user.name,
+            'role': user.role
         }));
         console.log('access cookie created successfully');
 

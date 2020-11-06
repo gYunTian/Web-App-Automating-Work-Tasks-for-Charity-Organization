@@ -3,6 +3,7 @@ const authController = require('../controllers/auth/authController');
 const loginController = require('../controllers/login/loginController');
 const registerController = require('../controllers/register/registerController');
 const reviewController = require('../controllers/review/reviewController');
+const updateController = require('../controllers/update/updateController');
 
 const router = express.Router();
 
@@ -46,6 +47,18 @@ router.get(
 router.post(
     '/login',
     loginController.login
+);
+
+/**
+ * @swagger
+ * /api/update:
+ *   post:
+ *    description:  
+ */
+
+router.post(
+    '/update',
+    updateController.update
 );
 
 /**

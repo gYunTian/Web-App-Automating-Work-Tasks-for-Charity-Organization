@@ -30,7 +30,7 @@ export default function Restock({data}) {
             <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-200 text-red-800">
               {"To "+row.status}
             </span>
-            <div class="text-sm leading-5 text-gray-500 pt-1">Not started</div>
+            <div className="text-sm leading-5 text-gray-500 pt-1">Not started</div>
           </td>
 
           <td className="px-6 py-4 whitespace-no-wrap">

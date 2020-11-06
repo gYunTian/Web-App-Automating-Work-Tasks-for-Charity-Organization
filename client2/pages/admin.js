@@ -7,7 +7,6 @@ import Side from '../components/Admin/Side';
 import withAuth from '../hocs/withAuth';
 import { getName, getRole, useIsAuthenticated, useAuth } from '../providers/Auth';
 
-
 // use back with auth
 export default withAuth(function Admin({ userData, restockData, requestData }) {
 
@@ -18,7 +17,7 @@ export default withAuth(function Admin({ userData, restockData, requestData }) {
 	return (
 		<div className='flex flex-col h-screen'>	
 
-			<Header />
+			<Header role={role}/>
 
 			<SubHeader name={name} role={role} />
 			
@@ -28,7 +27,6 @@ export default withAuth(function Admin({ userData, restockData, requestData }) {
             <Side userData={userData} restockData={restockData} requestData={requestData} />
           </div>
 				</div>
-
 			</div>
 
 			<Footer />
@@ -52,7 +50,6 @@ export async function getStaticProps() {
 	};
 
 }
-
 
 export async function fetchUserData() {
 	try {
