@@ -56,5 +56,5 @@ server.use(function (req, res, next) {
 // Use routes
 server.use('/api', apiRouter);
 
-// server.listen(process.env.PORT, () => console.log('server started on port '+process.env.PORT));
-server.listen(5000, () => console.log('server started on port 5000'));
+server.listen(process.env.PORT, () => console.log('server started on port '+process.env.PORT));
+//server.listen(5000, () => console.log('server started on port 5000'));
