@@ -6,8 +6,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 require('dotenv').config();
 
-const dev = process.env.NODE_ENV !== 'production'
-const app = next({ dev })
+const app = next({})
 const handle = app.getRequestHandler()
 const apiRouter = require('./server/routes/apiRoute');
 

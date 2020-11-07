@@ -20,6 +20,6 @@ module.exports = withNextEnv({
       CHANNEL_ID: process.env.CHANNEL_ID,
       TOKEN: process.env.TOKEN,
       PRIVATE_KEY: process.env.PRIVATE_KEY,
-      MONGO_LOCAL_URI: process.env.MONGO_LOCAL_URI
+      MONGO_LOCAL_URI: process.env.MONGO_LOCAL_URI,
     },
   });
