@@ -1,6 +1,7 @@
 {
   "name": "client2",
   "version": "0.1.0",
+  "main": "server.js",
   "private": true,
   "scripts": {
     "dev": "node server.js",
@@ -8,6 +9,7 @@
     "start": "node server.js",
     "eslint-check": "eslint --print-config src/main.js | eslint-config-prettier-check"
   },
+  "engines": {"node": ">=10.16.3"},
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
