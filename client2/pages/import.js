@@ -1,13 +1,12 @@
+import Footer from "../components/front/Footer";
 import Header from "../components/homepage/header/Header";
 import SubHeader from "../components/homepage/header/SubHeader";
-import Footer from "../components/front/Footer";
+import Uploader from "../components/upload/uploader";
 import withAuth from "../hocs/withAuth";
-import Uploader from '../components/upload/uploader';
 import {
   getName,
   getRole,
-  useIsAuthenticated,
-  useAuth,
+  useIsAuthenticated
 } from "../providers/Auth";
 
 export default withAuth(function Import() {
@@ -17,11 +16,11 @@ export default withAuth(function Import() {
 
   return (
     <div className="flex flex-col h-screen">
-      <Header />
+      <Header name={name} role={role} />
       <SubHeader name={name} role={role} />
 
       <div className="antialiased bg-gray-200 flex-grow">
-      <Uploader/>
+        <Uploader />
       </div>
 
       <Footer />

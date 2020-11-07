@@ -1,14 +1,12 @@
+import Footer from '../components/front/Footer';
 import Header from '../components/homepage/header/Header';
 import SubHeader from '../components/homepage/header/SubHeader';
-import Footer from '../components/front/Footer';
-import Table from '../components/homepage/table/Table';
+import ScheduleListContextProvider from '../components/schedule/context/ScheduleListContext';
+import ScheduleForm from '../components/schedule/ScheduleForm';
+import ScheduleList from '../components/schedule/ScheduleList';
+import Title from '../components/schedule/Title';
 import withAuth from '../hocs/withAuth';
-import { getName, getRole, useIsAuthenticated, useAuth } from '../providers/Auth';
-import Title from '../components/schedule/Title'
-import ScheduleForm from '../components/schedule/ScheduleForm'
-import ScheduleList from '../components/schedule/ScheduleList'
-import ScheduleListContextProvider from '../components/schedule/context/ScheduleListContext'
-
+import { getName, getRole, useIsAuthenticated } from '../providers/Auth';
 
 // use back with auth
 export default withAuth(function Home({ data }) {
@@ -20,7 +18,7 @@ export default withAuth(function Home({ data }) {
 
 	return (
 		<div className='flex flex-col h-screen'>
-			<Header />
+			<Header name={name} role={role} />
 			<SubHeader name={name} role={role} />
 			<div className='antialiased bg-gray-200 flex-grow' >
 

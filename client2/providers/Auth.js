@@ -1,7 +1,3 @@
-// remaining
-// on login, it doesnt set to be authenticated
-// loading on login
-// redirect to front error
 
 import React, { useEffect } from 'react';
 
@@ -33,8 +29,9 @@ export const AuthProvider = ({ children }) => {
 			
 			try {
 				// const response = await fetch('http://localhost:8080/mylocalfunction/', {credentials: 'include'});
-				const response = await fetch('http://localhost:5000/api/auth/verify', {credentials: 'include'});
+				// const response = await fetch('http://localhost:5000/api/auth/verify', {credentials: 'include'});
 				//const response = await fetch('https://67590a5d-49be-4eb3-a302-c90be94feb62-faas-http.tenant.us10.functions.xfs.cloud.sap/mylocalhttptrigger/', {credentials: 'include'});
+				const response = await fetch('/api/auth/verify', {credentials: 'include'});
 
 				if (response.status === 200) {
 					console.log('server okay');
@@ -46,7 +43,7 @@ export const AuthProvider = ({ children }) => {
 					setRole(role);
 
 				} else {
-					console.log(response);
+					// console.log(response.statusText);
 					console.log('not authenticated');
 					setLoading(false);
 

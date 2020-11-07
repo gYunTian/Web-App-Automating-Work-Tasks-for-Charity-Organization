@@ -1,5 +1,5 @@
-import { useRouter } from 'next/router';
-import { useAuth } from '../providers/Auth';
+import { useRouter } from "next/router";
+import { useAuth } from "../providers/Auth";
 
 // components rendering twice is because of strict mode
 function DefaultLoadingFallback() {
@@ -10,28 +10,24 @@ export default function withAuthRedirect({
   WrappedComponent,
   LoadingComponent = DefaultLoadingFallback,
   expectedAuth,
-  location
+  location,
 }) {
-  const WithAuthRedirectWrapper = props => {
+  const WithAuthRedirectWrapper = (props) => {
     const router = useRouter();
-    
+
     const { isLoading, isAuthenticated } = useAuth();
     if (isLoading) {
       return <LoadingComponent />;
     }
 
-    if (typeof window !== 'undefined' && expectedAuth !== isAuthenticated) {
-      console.log('logged in? '+isAuthenticated);
+    if (typeof window !== "undefined" && expectedAuth !== isAuthenticated) {
+      console.log("logged in? " + isAuthenticated);
       router.push(location);
       return <></>;
     }
-    // else {
-    //   // from login page
-    //   console.log("logged in");
-    //   router.push('/home');
-    // }
+
     return <WrappedComponent {...props} />;
   };
-  
+
   return WithAuthRedirectWrapper;
 }

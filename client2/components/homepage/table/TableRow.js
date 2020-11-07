@@ -3,21 +3,6 @@ import classnames from 'classnames';
 export default function TableRow({ data, index, bg }) {
 	let profile =
 		data.race + ' ' + data.religion + ' ' + data.dietaryRestrictions;
-	// console.log(beneficiary)
-
-	// console.log("first "+beneficiary.address)
-	// const unit = /#[0-9]+-[0-9]+/.exec(beneficiary.address);
-	// beneficiary.address = beneficiary.address.replace(unit, "");
-
-	// console.log(beneficiary.address)
-	// const block = /blk\s*[0-9]+|block\s*[0-9]+/.exec(beneficiary.address.toLowerCase());
-	// beneficiary.address = beneficiary.address.replace(block, "");
-	// console.log(beneficiary.address)
-	// const street = beneficiary.address;
-
-	// console.log('unit: '+unit);
-	// console.log('block: '+block);
-	// console.log('street: '+street);
 
 	if (index % 2 == 0) {
 		bg = 'bg-gray-100';

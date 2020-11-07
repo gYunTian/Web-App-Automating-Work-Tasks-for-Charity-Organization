@@ -14,7 +14,8 @@ export default function Header({ name, role }) {
 
     const onLogout = async () => {
         // let url = 'https://g1t3-node-auth-srv.cfapps.us10.hana.ondemand.com/api/auth/clear';
-        let url = 'http://localhost:5000/api/auth/clear';
+        // let url = 'http://localhost:5000/api/auth/clear';
+        let url = '/api/auth/clear';
         console.log("attempting to logout");
         const response = await fetch(url, {credentials: 'include'});
         Router.push('/front');

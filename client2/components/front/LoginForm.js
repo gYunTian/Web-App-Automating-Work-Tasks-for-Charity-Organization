@@ -8,9 +8,10 @@ export default function LoginForm({setLoading, stopLoading}) {
     const [password, setPassword] = useState(null);
     const [error, setError] = useState(false);
     const [status, setStatus] = useState(null);
-    // const [loading, setLoading] = useState(false);
+    
     //const url = 'https://g1t3-node-auth-srv.cfapps.us10.hana.ondemand.com/api/login';
-    const url = 'http://localhost:5000/api/login';
+    //const url = 'http://localhost:5000/api/login';
+    const url = '/api/login';
     const auth = useAuth();
 
     const closeAlert = (e) => {
@@ -46,7 +47,7 @@ export default function LoginForm({setLoading, stopLoading}) {
             const response = await fetch(url, requestOptions);
             if (response.ok) {
                 const data = await response.json();
-                console.log("logged in");
+                console.log("logged in!");
                 auth.setName(data.email);
                 auth.setRole(data.role);
                 auth.setAuth(true);
