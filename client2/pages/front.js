@@ -4,34 +4,21 @@
 import Footer from "../components/front/Footer";
 import MainForm from "../components/front/MainForm";
 import LoadingOverlay from "react-loading-overlay";
+import { useState } from "react";
 
-class front extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      'loading': false,
-    };
-  }
+export default function Front() {
+  const [loading, setLoading] = useState(false);
 
-  setLoading = () => {
-    console.log("set loading");
-    this.setState({
-      'loading': true,
-    })
-  }
+  const setLoad = () => {
+    setLoading(true);
+  };
 
-  stopLoading = () => {
-    console.log("stop loading");
-    this.setState({
-      'loading': false,
-    })
-  }
-  
-  render() {
-    // const { isLoading, isAuthenticated } = useAuth();
+  const stopLoad = () => {
+    setLoading(false);
+  };
 
-    return (
-      <LoadingOverlay active={this.state.loading} spinner text='Please wait...'>
+  return (
+    <LoadingOverlay active={loading} spinner text="Please wait...">
       <div className="flex flex-col h-screen justify-between">
         <div />
         <div className="h-auto">
@@ -45,16 +32,16 @@ class front extends React.Component {
             </div>
 
             <div className="sm:flex sm:justify-center">
-              <MainForm setLoading={this.setLoading} stopLoading={this.stopLoading} />
+              <MainForm
+                setLoading={setLoad}
+                stopLoading={stopLoad}
+              />
             </div>
           </div>
         </div>
 
         <Footer />
       </div>
-      </LoadingOverlay>
-    );
-  }
+    </LoadingOverlay>
+  );
 }
-
-export default front

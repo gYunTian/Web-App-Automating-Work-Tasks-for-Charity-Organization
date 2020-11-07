@@ -1,7 +1,8 @@
 import classnames from 'classnames';
 import CssToolTip from './CssToolTip';
 
-export default function TableBody({ page, prepareRow }) {
+export default function TableBody({ page, prepareRow, send }) {
+
 	return (
 		<tbody>
 			{page.map((row, i) => {
@@ -21,25 +22,34 @@ export default function TableBody({ page, prepareRow }) {
 							bg,
 							'border hover:bg-gray-400 flex lg:table-row flex-wrap mb-1 mt-1 lg:mb-0'
 						)}
+						
 					>
 						{row.cells.map((cell) => {
 							if (
 								cell.column.Header == 'Stock lvl' &&
 								cell.row.original.delivery != null
 							) {
-								let cl =
-									cell.value < 14
-										? cell.value < 5
-											? 'bg-red-400'
-											: 'bg-yellow-400'
-										: 'bg-green-400';
+								if (cell.value < 14) {
+									if (cell.value < 5) {
+										var cl = 'bg-red-400';
+										send.push(row.cells[0].value);
+									}
+									else {
+										var cl = 'bg-yellow-400';	
+										// med.push(row.cells[0].value);
+									}
+								}
+								else {
+									var cl = 'bg-green-400';
+								}
+								
 								let tl =
 									cell.value < 14
 										? cell.value < 5
 											? 'text-red-800'
 											: 'text-yellow-800'
 										: 'text-green-800';
-								console.log(cell.value);
+								// console.log(cell.value);
 
 								return (
 									<td
@@ -93,6 +103,9 @@ export default function TableBody({ page, prepareRow }) {
 									</td>
 								);
 							} else if (cell.column.Header != 'Id') {
+								if (cell.column.Header == 'Stock lvl') {
+									send.push(row.cells[0].value);
+								}
 								return (
 									<td
 										className='px-5 py-5 lg:table-cell'
@@ -117,11 +130,20 @@ export default function TableBody({ page, prepareRow }) {
 									</td>
 								);
 							}
-							// kill off id td
 							else {
-								return <td className='hidden' key={cell.value}></td>;
+								return (
+									<td
+									className='px-5 py-5 lg:table-cell'
+									{...cell.getCellProps()}
+									>
+									{cell.value}
+									</td>
+								)
+								// return <td className='hidden' key={cell.value}></td>;
 							}
+
 						})}
+						{/* {setLow(low), setNone(none), setMedium(med)} */}
 					</tr>
 				);
 			})}

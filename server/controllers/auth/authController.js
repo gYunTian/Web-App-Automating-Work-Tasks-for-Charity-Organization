@@ -1,8 +1,9 @@
 // authController.js - Auth Controller module
 const jwt = require('jsonwebtoken');
-require('dotenv').config()
+require('dotenv').config();
 const fs = require('fs');
 const path = require('path');
+const axios = require('axios');
 
 exports.authenticate = async (req, res) => {
     console.log("authenticate")
@@ -25,7 +26,6 @@ exports.authenticate = async (req, res) => {
         console.log('Error creating cookie');
         return res.status(500).json(error.toString());
     }
-
 };
 
 
@@ -46,10 +46,25 @@ exports.verify = async (req, res, next) => {
 
         let pkey = fs.readFileSync(path.join(__dirname, 'public.pem'));
         let payload = await jwt.verify(token, pkey);
+
+        let url = "https://smucf-dev-ebs-g1t3-srv.cfapps.us10.hana.ondemand.com/api/User?$filter=contains(email,'"+payload.email+"')";
         
-        // console.log('email : '+payload.email);
-        // console.log('name : '+payload.name);
-        // console.log('role : '+payload.role);
+        try {
+            const response = await axios.get(url, {
+                headers: {
+                    method: 'GET',
+                    headers: { 'Content-Type': 'application/json' }
+                }
+            })
+            // console.log(payload.email);
+            // console.log(response.data);
+            payload['role'] = response.data.value[0]['userType'];
+            console.log(payload);
+        } catch (error) {
+            console.log("Problem fetching user details from odata");
+            console.log(error);
+        }
+        
         console.log('cookie checked successfully');
 
         res.setHeader('Content-Type', 'application/json');

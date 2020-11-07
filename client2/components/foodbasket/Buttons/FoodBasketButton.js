@@ -4,7 +4,7 @@ const FoodBasketButton = ({ onClick, className = '', children }) => (
 	<div>
 		<Button
 			color='primary'
-			fullWidth='true'
+			// fullWidth='true'
 			onClick={onClick}
 			className={className}
 		>

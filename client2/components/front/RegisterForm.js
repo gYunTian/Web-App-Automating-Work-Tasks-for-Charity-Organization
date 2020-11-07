@@ -8,7 +8,8 @@ class RegisterForm extends React.Component {
 
         this.state = {
             // 'url': 'https://g1t3-node-auth-srv.cfapps.us10.hana.ondemand.com/api/register',
-            'url': 'http://localhost:5000/api/register',
+            // 'url': 'http://localhost:5000/api/register',
+            'url': '/api/register',
             'email': null,
             'name': null,
             'password': null,
