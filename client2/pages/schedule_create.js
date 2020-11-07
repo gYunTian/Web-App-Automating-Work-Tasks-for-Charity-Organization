@@ -1,10 +1,15 @@
-
 import Header from '../components/homepage/header/Header';
 import SubHeader from '../components/homepage/header/SubHeader';
 import Footer from '../components/front/Footer';
+import Table from '../components/homepage/table/Table';
 import withAuth from '../hocs/withAuth';
 import { getName, getRole, useIsAuthenticated, useAuth } from '../providers/Auth';
-import Table from "../components/schedule/index"
+import Title from '../components/schedule/Title'
+import ScheduleForm from '../components/schedule/ScheduleForm'
+import ScheduleList from '../components/schedule/ScheduleList'
+import ScheduleListContextProvider from '../components/schedule/context/ScheduleListContext'
+import Wat from '../components/test/API'
+
 
 
 // use back with auth
@@ -19,7 +24,17 @@ export default withAuth(function Home({ data }) {
 		<div className='flex flex-col h-screen'>
 			<Header />
 			<SubHeader name={name} role={role} />
-			<Table />
+			<div className='antialiased bg-gray-200 flex-grow' >
+				<ScheduleListContextProvider>
+					<Title />
+					<div className = "main">  
+						<ScheduleForm />
+						<Wat />
+						<ScheduleList />
+						<h1>heyheyhey</h1>
+					</div>
+				</ScheduleListContextProvider>
+			</div>
  			<Footer />
  		</div>
 	);
