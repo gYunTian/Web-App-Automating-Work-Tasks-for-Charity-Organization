@@ -1,0 +1,13 @@
+{
+  "/_app": "pages/_app.js",
+  "/admin": "pages/admin.js",
+  "/diet": "pages/diet.js",
+  "/front": "pages/front.html",
+  "/home": "pages/home.js",
+  "/import": "pages/import.html",
+  "/schedule": "pages/schedule.html",
+  "/test": "pages/test.html",
+  "/_error": "pages/_error.js",
+  "/_document": "pages/_document.js",
+  "/404": "pages/404.html"
+}
