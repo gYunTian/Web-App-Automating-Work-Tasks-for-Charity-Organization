@@ -37,6 +37,7 @@ class Table extends Component {
             </td>
             <td>
                 Charity
+
             </td>
         </th>
 
