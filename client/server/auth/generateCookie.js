@@ -15,8 +15,8 @@ const generateToken = (res, email, name, role) => {
   return res.cookie('AuthEbsToken', accessToken, {
     expires: new Date(Date.now() + expiration),
     httpOnly: true,
-    // secure: true,
-    // sameSite: "none",
+    secure: true,
+    sameSite: "none",
   });
 };
 module.exports = generateToken

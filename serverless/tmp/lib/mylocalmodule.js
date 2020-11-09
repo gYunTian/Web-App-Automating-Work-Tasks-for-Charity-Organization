@@ -10,7 +10,7 @@ module.exports = async function (event, context) {
 
   res.setHeader('Access-Control-Allow-Credentials', true);
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-  const allowedOrigins = ['http://localhost:3000', 'https://g1t3-node-auth-srv.cfapps.us10.hana.ondemand.com'];
+  const allowedOrigins = ['http://localhost:3000', 'https://g1t3-node-auth-srv.cfapps.us10.hana.ondemand.com', 'https://ebs-g1t3.cfapps.us10.hana.ondemand.com/'];
   const origin = req.headers.origin;
   if (allowedOrigins.includes(origin)) {
        res.setHeader('Access-Control-Allow-Origin', origin);
