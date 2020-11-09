@@ -8,7 +8,7 @@ import Title from '../components/schedule/Title'
 import ScheduleForm from '../components/schedule/ScheduleForm'
 import ScheduleList from '../components/schedule/ScheduleList'
 import ScheduleListContextProvider from '../components/schedule/context/ScheduleListContext'
-import Wat from '../components/test/API'
+
 
 
 
@@ -26,12 +26,13 @@ export default withAuth(function Home({ data }) {
 			<SubHeader name={name} role={role} />
 			<div className='antialiased bg-gray-200 flex-grow' >
 				<ScheduleListContextProvider>
-					<Title />
+				<div className="header my-4">
+            		<h1 className="text-black font-bold">Add Schedule</h1>
+        		</div>
 					<div className = "main">  
 						<ScheduleForm />
-						<Wat />
-						<ScheduleList />
-						<h1>heyheyhey</h1>
+
+
 					</div>
 				</ScheduleListContextProvider>
 			</div>

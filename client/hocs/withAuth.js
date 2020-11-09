@@ -5,6 +5,6 @@ export default function withAuth(WrappedComponent, location = "/front") {
   return withAuthRedirect({
     WrappedComponent,
     location,
-    expectedAuth: true,
+    expectedAuth: false,
   });
 }

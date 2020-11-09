@@ -4,7 +4,7 @@ import Footer from '../components/front/Footer';
 import withAuth from '../hocs/withAuth';
 import { getName, getRole, useIsAuthenticated, useAuth } from '../providers/Auth';
 import Table from "../components/schedule/index"
-
+import Title from '../components/schedule/Title'
 
 // use back with auth
 export default withAuth(function Home({ data }) {
@@ -18,8 +18,13 @@ export default withAuth(function Home({ data }) {
 		<div className='flex flex-col h-screen'>
 			<Header name={name} role={role} />
 			<SubHeader name={name} role={role} />
-			<Table />
- 			<Footer />
+			<div className='antialiased bg-gray-200 flex-grow' >
+					<Title />
+					<div className = "main">
+						<Table />
+						<Footer />
+					</div>
+			</div>
  		</div>
 	);
 });

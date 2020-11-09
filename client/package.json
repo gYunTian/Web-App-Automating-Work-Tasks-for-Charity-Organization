@@ -4,7 +4,7 @@
   "main": "server.js",
   "private": true,
   "scripts": {
-    "dev": "node server.js",
+    "dev": "next dev",
     "build": "next build",
     "start": "node server.js",
     "eslint-check": "eslint --print-config src/main.js | eslint-config-prettier-check"
