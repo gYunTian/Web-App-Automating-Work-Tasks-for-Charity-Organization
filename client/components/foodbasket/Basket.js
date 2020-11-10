@@ -128,7 +128,7 @@ class Basket extends Component {
 			return;
 		}
 		console.log(e.target.value);
-		const { basket } = this.state;
+		const { basket, selectedBasket } = this.state;
 		console.log(basket);
 		const id = uuidv4();
 		console.log(id);
@@ -136,9 +136,18 @@ class Basket extends Component {
 		const newBasketList = [...basket, newBasket];
 		console.log(newBasketList);
 		this.setState({ basket: newBasketList });
-		// e.preventDefault();
-		// e.target.reset();
-		// TODO: create new basket
+		// POST API
+		const url =
+			'https://smucf-dev-ebs-g1t3-srv.cfapps.us10.hana.ondemand.com/api/Basket/';
+		fetch(url, {
+			headers: { 'Content-Type': 'application/json' },
+			method: 'POST',
+			body: JSON.stringify({
+				BasketID: newBasket.BasketID,
+				name: newBasket.name,
+				stocks: newBasket.stocks,
+			}),
+		});
 	}
 	// PUT API
 	// const url =
