@@ -29,6 +29,8 @@ export default function TableBody({ page, prepareRow, send }) {
 								cell.column.Header == 'Stock lvl' &&
 								cell.row.original.delivery != null
 							) {
+								// console.log(cell);
+								// console.log(cell.value);
 								if (cell.value < 14) {
 									if (cell.value < 5) {
 										var cl = 'bg-red-400';
@@ -90,15 +92,16 @@ export default function TableBody({ page, prepareRow, send }) {
 										className='px-5 py-5 lg:table-cell'
 										{...cell.getCellProps()}
 									>
-										{typeof cell.value != 'undefined' ||
-										cell.value != null ||
-										cell.value != '' ? (
+										{typeof cell.value != 'undefined' &&
+										cell.value != null &&
+										cell.value != ''  &&
+										cell.value.length != 0 ? (
 											<CssToolTip
 												data={cell.value}
 												text={'Generic Restriction Text'}
 											/>
 										) : (
-											<p className='text-center text-gray-900'>{'None'}</p>
+											<p className='text-center text-gray-900 underline'>{'None'}</p>
 										)}
 									</td>
 								);

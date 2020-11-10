@@ -70,6 +70,76 @@ export default function Uploader() {
             },
             "body": obj
           }
+          // if (i <= 1) {
+          // obj['Stocks'] = [
+          //   {
+          //     "stock_stockID": "canned",
+          //     "stockCount": 14
+          //   },
+          //   {
+          //       "stock_stockID": "egg",
+          //       "stockCount": 30
+          //   },
+          //           {
+          //       "stock_stockID": "rice",
+          //       "stockCount": 1956
+          //   },
+          //   {
+          //     "stock_stockID": "beverage",
+          //     "stockCount": 16
+          //   },
+          //   {
+          //     "stock_stockID": "instant",
+          //     "stockCount": 6
+          //   },
+          //   {
+          //     "stock_stockID": "bread",
+          //     "stockCount": 12
+          //   },
+          //   {
+          //     "stock_stockID": "vege",
+          //     "stockCount": 3581
+          //   },
+          //   {
+          //     "stock_stockID": "biscuit",
+          //     "stockCount": 522
+          //   }]
+          // }
+          // else {
+          //   obj['Stocks'] = [
+          //     {
+          //       "stock_stockID": "canned",
+          //       "stockCount": 12
+          //     },
+          //     {
+          //         "stock_stockID": "egg",
+          //         "stockCount": 30
+          //     },
+          //     {
+          //         "stock_stockID": "rice",
+          //         "stockCount": 10000
+          //     },
+          //     {
+          //       "stock_stockID": "beverage",
+          //       "stockCount": 12
+          //     },
+          //     {
+          //       "stock_stockID": "instant",
+          //       "stockCount": 24  
+          //     },
+          //     {
+          //       "stock_stockID": "bread",
+          //       "stockCount": 24
+          //     },
+          //     {
+          //       "stock_stockID": "vege",
+          //       "stockCount": 1200
+          //     },
+          //     {
+          //       "stock_stockID": "biscuit",
+          //       "stockCount": 1000
+          //     }]
+          // }
           payload.push(main);
           list.push(obj);
         }
@@ -113,6 +183,7 @@ export default function Uploader() {
 
     let url = 'https://cors-anywhere.herokuapp.com/https://smucf-dev-ebs-g1t3-srv.cfapps.us10.hana.ondemand.com/api/$batch';
     // let url = 'https://cors-anywhere.herokuapp.com/http://localhost:4004/api/$batch';
+    // console.log(JSON.stringify(payload));
 
     const requestOptions = {
       method: 'POST',
@@ -122,6 +193,7 @@ export default function Uploader() {
 
     try {
       console.log("attempting to send data");
+      // console.log(payload);
 
       const response = await fetch(url, requestOptions);
       const data = await response.json();

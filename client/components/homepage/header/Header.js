@@ -74,14 +74,19 @@ export default function Header({ name, role }) {
                     <a href="#" className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-black font-bold font-size text-l items-center justify-center hover:bg-gray-900 hover:text-white" >
                         <List className="py-1"/><span>List</span>
                     </a>
-                    
-                    { role == "admin" &&
+
+                    <Link href="/admin">
+                        <a href="#" className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-black font-bold font-size text-l items-center justify-center hover:bg-gray-900 hover:text-white" >
+                            <SupervisorAccount className="py-1"/><span>Admin</span>
+                        </a>
+                    </Link>                    
+                    {/* { role == "admin" &&
                         <Link href="/admin">
                         <a href="#" className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-black font-bold font-size text-l items-center justify-center hover:bg-gray-900 hover:text-white" >
                             <SupervisorAccount className="py-1"/><span>Admin</span>
                         </a>
                         </Link>
-                    }
+                    } */}
                 </div>
             </div>
 

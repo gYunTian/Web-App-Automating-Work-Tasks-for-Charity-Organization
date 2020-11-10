@@ -51,7 +51,7 @@ export async function getStaticProps() {
       restockData,
       requestData,
     },
-    revalidate: 3,
+    revalidate: 1,
   };
 }
 

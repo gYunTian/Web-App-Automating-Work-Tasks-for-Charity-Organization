@@ -18,6 +18,11 @@ export default withAuth(function Home({ data }) {
   const role = getRole();
   const [send, setSend] = useState([]);
 
+  // for (var i = 0; i < data.length; i ++) {
+  //   if (data[i].org_charityID == )
+  //   console.log(data[i].org_charityID);
+  // }
+
   window.webchatMethods = {
     getMemory: (conversationId) => {
       const memory = { ids: Array.from(new Set(send)) };
@@ -74,7 +79,7 @@ export async function getStaticProps() {
       props: {
         data,
       },
-      revalidate: 3600,
+      revalidate: 5,
     };
   }
 
@@ -121,7 +126,7 @@ export async function getStaticProps() {
     // console.log(data[i]);
   }
 
-  if (stocks.length > 0) {
+  if (stocks.data.length > 0) {
     console.log("Querying prediction api");
     let options = {
       method: "POST",
@@ -160,6 +165,6 @@ export async function getStaticProps() {
     props: {
       data,
     },
-    revalidate: 3600,
+    revalidate: 5,
   };
 }
