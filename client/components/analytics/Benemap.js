@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import 'leaflet/dist/leaflet.css';
 import 'leaflet-draw/dist/leaflet.draw.css';
 import Button from '@material-ui/core/Button';
-import bene from '../assets/bene';
 import Markers from './VenueMarkers';
 let classifyPoint = require("robust-point-in-polygon");
 import { Map, TileLayer, FeatureGroup} from 'react-leaflet';
