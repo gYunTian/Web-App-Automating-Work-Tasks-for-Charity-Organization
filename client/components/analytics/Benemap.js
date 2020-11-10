@@ -95,7 +95,7 @@ class Benemap extends Component {
 
 	printData = () => {
 		async function benequeryfunction(beneid) {
-			const url = `https://smucf-dev-ebs-g1t3-srv.cfapps.us10.hana.ondemand.com/api/Beneficiary('${beneid}')`
+			const url = `https://cors-anywhere.herokuapp.com/https://smucf-dev-ebs-g1t3-srv.cfapps.us10.hana.ondemand.com/api/Beneficiary('${beneid}')`
 			const res = await fetch(url)
 			const result = await res.json();
 			return result;
@@ -181,7 +181,7 @@ class Benemap extends Component {
 		let unique_postcode_set = new Set()
 		let cleaned_data = [];
 		let final_output = []; 
-		const url = "https://smucf-dev-ebs-g1t3-srv.cfapps.us10.hana.ondemand.com/api/Beneficiary";
+		const url = "https://cors-anywhere.herokuapp.com/https://smucf-dev-ebs-g1t3-srv.cfapps.us10.hana.ondemand.com/api/Beneficiary";
 		const res = await fetch(url);
 		const result = await res.json();
 			//set up set, get all unqiue postcode 

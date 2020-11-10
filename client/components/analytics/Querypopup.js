@@ -111,7 +111,7 @@ export default function Popup({ closePopup, data }) {
 		//console.log(id_list);
 		//console.log(id_list.toString());
 		async function benequeryfunction(beneid) {
-			const url = `https://smucf-dev-ebs-g1t3-srv.cfapps.us10.hana.ondemand.com/api/DataRequest('${beneid}')`;
+			const url = `https://cors-anywhere.herokuapp.com/https://smucf-dev-ebs-g1t3-srv.cfapps.us10.hana.ondemand.com/api/DataRequest('${beneid}')`;
 			const res = await fetch(url);
 			const result = await res.json();
 			return result;
@@ -119,7 +119,7 @@ export default function Popup({ closePopup, data }) {
 
 		async function posttoreview(benedict) {
 			const postres = await fetch(
-				'https://smucf-dev-ebs-g1t3-srv.cfapps.us10.hana.ondemand.com/api/DataRequest',
+				'https://cors-anywhere.herokuapp.com/https://smucf-dev-ebs-g1t3-srv.cfapps.us10.hana.ondemand.com/api/DataRequest',
 				{
 					method: 'POST', // or 'PUT'
 					headers: { 'Content-Type': 'application/json' },
@@ -132,7 +132,7 @@ export default function Popup({ closePopup, data }) {
 
 		async function puttoreview(benedict, beneid) {
 			const putres = await fetch(
-				`https://smucf-dev-ebs-g1t3-srv.cfapps.us10.hana.ondemand.com/api/DataRequest('${beneid}')`,
+				`https://cors-anywhere.herokuapp.com/https://smucf-dev-ebs-g1t3-srv.cfapps.us10.hana.ondemand.com/api/DataRequest('${beneid}')`,
 				{
 					method: 'PUT', // or 'PUT'
 					headers: { 'Content-Type': 'application/json' },
