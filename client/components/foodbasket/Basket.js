@@ -138,7 +138,7 @@ class Basket extends Component {
 		this.setState({ basket: newBasketList });
 		// POST API
 		const url =
-			'https://smucf-dev-ebs-g1t3-srv.cfapps.us10.hana.ondemand.com/api/Basket/';
+			'https://cors-anywhere.herokuapp.com/https://smucf-dev-ebs-g1t3-srv.cfapps.us10.hana.ondemand.com/api/Basket';
 		fetch(url, {
 			headers: { 'Content-Type': 'application/json' },
 			method: 'POST',

@@ -123,12 +123,24 @@ function Form() {
 				}),
 			}
 		);
+
 		const postresult = await result.json();
 		console.log(postresult);
 		// console.log(e)
 		// } catch(e){
 		// console.log(e)
 		// }
+		try {
+			const response = await fetch(
+				'https://api-quiet-manatee-cn.cfapps.us10.hana.ondemand.com/sendEmail'
+			);
+			var data = await response.json();
+			// data = data.value;
+			console.log(data);
+		} catch (error) {
+			let data = {};
+			console.log('Error fetching odata');
+		}
 	}
 
 	const handleChangeInput = (index, event) => {
