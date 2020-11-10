@@ -5,6 +5,7 @@ import withAuth from '../hocs/withAuth';
 import { getName, getRole, useIsAuthenticated, useAuth } from '../providers/Auth';
 import Table from "../components/schedule/index"
 import Title from '../components/schedule/Title'
+import Link from 'next/link'
 
 // use back with auth
 export default withAuth(function Home({ data }) {
@@ -18,13 +19,20 @@ export default withAuth(function Home({ data }) {
 		<div className='flex flex-col h-screen'>
 			<Header name={name} role={role} />
 			<SubHeader name={name} role={role} />
-			<div className='antialiased bg-gray-200 flex-grow' >
+			<div className="antialiased bg-gray-200 flex-grow">
+        		<div className="container mx-auto px-4 sm:px-8 mt-18">
 					<Title />
 					<div className = "main">
+						<Link href="/schedule_create">
+						<button className="bg-gray-400 border rounded hover:bg-gray-800 hover:text-white text-black mr-auto w-40"> 
+							Create Schedule
+						</button>
+						</Link>
 						<Table />
-						<Footer />
 					</div>
+				</div>
 			</div>
+			<Footer />
  		</div>
 	);
 });

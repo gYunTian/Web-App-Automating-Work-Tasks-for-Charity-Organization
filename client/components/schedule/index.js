@@ -23,10 +23,11 @@ class Table extends Component {
           this.setState({ isError: true, isLoading: false })
         }
     }
+
     // i cant get this to work
     renderTableHeader = () => {
         <th>
-            <td>
+            <td className ="font-bold">
                 ID
             </td>
             <td>
@@ -77,16 +78,16 @@ class Table extends Component {
                   {this.renderTableHeader()}
                 </tr> */}
                 <tr>
-                    <td>
+                    <td className="font-bold"> 
                         ID
                     </td>
-                    <td>
+                    <td className="font-bold"> 
                         Date
                     </td>
-                    <td>
+                    <td className="font-bold"> 
                         Time
                     </td>
-                    <td>
+                    <td className="font-bold"> 
                         Charity
                     </td>         
                 </tr>

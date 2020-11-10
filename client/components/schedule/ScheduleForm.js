@@ -5,7 +5,6 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import RemoveIcon from '@material-ui/icons/Remove';
 import AddIcon from '@material-ui/icons/Add';
-import Icon from '@material-ui/core/Icon';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -54,12 +53,12 @@ function Form() {
     
   const [inputFields, setInputFields] = useState([
     { "date": '', 
-    startTime: '' , 
-    charity_charityID:'', 
-    parent_scheduleID: '', 
-    volunteer_userID: '', 
-    beneficiary_beneficiaryID: '',
-    Food_BasketID: ''
+    "startTime": '' , 
+    "charity_charityID":'', 
+    "parent_scheduleID": '', 
+    "volunteer_userID": '', 
+    "beneficiary_beneficiaryID": '',
+    "Food_BasketID": ''
     },
   ]);
   // const [inputFields, setInputFields] = useState([
@@ -93,7 +92,7 @@ function Form() {
     // e.preventDefault();
     // prevent page reload everytime form submission is done
     // console.log("InputFields", inputFields);
-    
+    console.log('posting');
     const result = await fetch( "https://cors-anywhere.herokuapp.com/https://smucf-dev-ebs-g1t3-srv.cfapps.us10.hana.ondemand.com/api/Schedule", {
         method: 'post',
         headers: {'Content-Type': 'application/json' },
@@ -112,8 +111,11 @@ function Form() {
         })
           
       })
+      const postresult = await result.json();
+      console.log(postresult);
+      // console.log(e)
     // } catch(e){
-      console.log(e)
+      // console.log(e)
     // }
     }
 
@@ -134,20 +136,11 @@ function Form() {
 
   const handleAddFields = () => {
     setInputFields([...inputFields, 
-      // { firstName: '', 
-      // lastName: '', 
-      // volunteer_userID: '', 
-      // beneficiary_beneficiaryID:'' 
-      // },
-      {date: '', startTime: '' , charity_charityID:'', Details: 
-      [
-        {deliverStatus: "NotCompleted", 
-        parent_scheduleID: '', 
-        volunteer_userID: '', 
-        beneficiary_beneficiaryID: '',
-        Food_BasketID: ""
-        }
-      ]}
+      { "parent_scheduleID": '', 
+        "volunteer_userID": '', 
+        "beneficiary_beneficiaryID": '',
+        "Food_BasketID": ''
+        },
     ])
   }
   // const handleAddFields = () => {
@@ -179,9 +172,8 @@ function Form() {
       <form className = {classes.root}>
       {inputFields.map((inputField, index) => (
           <div key={index}>
-          
+
             <TextField 
-              // key = {index}
               id = 'date'
               name="date"
               label="Date"
