@@ -24,15 +24,10 @@
       "static/chunks/webpack.js",
       "static/chunks/pages/_error.js"
     ],
-    "/schedule": [
+    "/diet": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
-      "static/chunks/pages/schedule.js"
-    ],
-    "/schedule_create": [
-      "static/chunks/main.js",
-      "static/chunks/webpack.js",
-      "static/chunks/pages/schedule_create.js"
+      "static/chunks/pages/diet.js"
     ]
   },
   "ampFirstPages": []

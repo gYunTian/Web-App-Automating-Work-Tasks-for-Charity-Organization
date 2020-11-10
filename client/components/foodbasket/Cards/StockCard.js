@@ -18,10 +18,10 @@ export default function StockCard({
 			<CardContent>
 				{checker && data ? (
 					data.map((item) => (
-						<Grid container key={item.stockID}>
+						<Grid container key={item.stock_stockID}>
 							<Grid item>
 								<FoodBasketButton onClick={() => increment(item)}>
-									{item.name}
+									{item.stock_name}
 								</FoodBasketButton>
 							</Grid>
 						</Grid>

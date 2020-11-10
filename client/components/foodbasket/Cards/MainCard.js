@@ -32,7 +32,7 @@ export default function MainCard({
 					))}
 				<TextField
 					id='outlined-basic'
-					label='Create Preset'
+					label='Create Basket'
 					variant='outlined'
 					onKeyDown={(e) => createBasket(e)}
 				></TextField>

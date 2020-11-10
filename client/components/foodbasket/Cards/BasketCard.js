@@ -30,12 +30,12 @@ export default function BasketCard({
 			<CardContent>
 				{data !== null && data.length !== 0 ? (
 					data.map((item) => (
-						<Grid key={item.stock_stockID}>
+						<Grid key={item.stock_stock_stockID}>
 							<Grid item>
 								<Grid container>
 									<Grid item>
 										<FoodBasketButton onClick={() => onClickRemove(item)}>
-											{item.stock_name}
+											{item.stock_stock_name}
 										</FoodBasketButton>
 									</Grid>
 									<Grid item>
