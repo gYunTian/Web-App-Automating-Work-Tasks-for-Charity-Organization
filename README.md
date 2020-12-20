@@ -1,5 +1,18 @@
 # G1T3-frontend
 
+## Live website
+
+> ebs-g1t3.cfapps.us10.hana.ondemand.com
+
+### Use the following credentials to demo the app
+
+> Username : charity001@gmail.com
+> Password : password1
+
+### NodeJS backend repository
+
+> https://github.com/gYunTian/EBS-G1T3
+
 ## Installation
 
 cd and npm install:
@@ -9,11 +22,3 @@ cd client2
 npm install
 npm run dev
 ```
-
-ESLint & Prettier installation:
-
-[Install ESlint Extension on VSCode](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)<br>
-[Install Prettier Extension on VSCode](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
-
-    cd client2
-    npm install
