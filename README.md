@@ -4,7 +4,7 @@
 
 > [Proposal Slides](Proposal_Slides.pdf)
 
-> [Final Presentation Slides] (Final_Presentation.pdf)
+> [Final Presentation Slides](Final_Presentation.pdf)
 
 ## Live website
 
