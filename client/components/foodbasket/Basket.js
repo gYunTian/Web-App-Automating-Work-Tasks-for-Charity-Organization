@@ -122,6 +122,7 @@ class Basket extends Component {
 			}
 		});
 		this.setState({ basket: updatedAllBaskets, editMode: false });
+		
 	}
 	createBasket(e) {
 		if (e.key !== 'Enter') {
