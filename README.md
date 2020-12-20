@@ -1,13 +1,14 @@
 # G1T3-frontend
 
 ## What our solution is about
+
 > [Proposal Slides](Proposal_Slides.pdf)
 
 > [Final Presentation Slides] (Final_Presentation.pdf)
 
 ## Live website
 
-> ebs-g1t3.cfapps.us10.hana.ondemand.com
+> [Website](https://ebs-g1t3.cfapps.us10.hana.ondemand.com)
 
 ### Use the following credentials to demo the app
 
