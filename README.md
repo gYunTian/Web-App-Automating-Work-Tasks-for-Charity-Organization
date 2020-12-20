@@ -1,5 +1,10 @@
 # G1T3-frontend
 
+## What our solution is about
+> [Proposal Slides](Proposal_Slides.pdf)
+
+> [Final Presentation Slides] (Final_Presentation.pdf)
+
 ## Live website
 
 > ebs-g1t3.cfapps.us10.hana.ondemand.com
@@ -7,6 +12,7 @@
 ### Use the following credentials to demo the app
 
 > Username : charity001@gmail.com
+
 > Password : password1
 
 ### NodeJS backend repository
