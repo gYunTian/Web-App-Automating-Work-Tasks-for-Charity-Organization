@@ -1,4 +1,14 @@
 # G1T3-frontend
+In this project, my Team and I set out to develop a web application for a Charity Related Organization.
+
+Our solution helps to Piece together several aaspects of the organization's daily task/work:
+specifically: </br>
+1) Account Management
+2) Assigning tasks to Volunteers
+3) Predicting beneficiaries' food stock level using Machine Learning
+4) Analytics and map based visual
+5) Connecting with other organizations to share details on volunteers (so as to condense their operation area)
+
 
 ## What our solution is about
 
