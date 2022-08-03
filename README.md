@@ -1,7 +1,7 @@
 # G1T3-frontend
 In this project, my Team and I set out to develop a web application for a Charity Related Organization.
 
-Our solution helps to Piece together several aaspects of the organization's daily task/work:
+<b>Our solution helps to Piece together several aspects of the organization's daily task/work</b>:
 specifically: </br>
 1) Account Management
 2) Assigning tasks to Volunteers
@@ -10,7 +10,7 @@ specifically: </br>
 5) Connecting with other organizations to share details on volunteers (so as to condense their operation area)
 
 #### Update 8/3/2021: </br>
-Unfortunately, the hosting platform (SAP) provided to us for free has since closed our account, therefore the website is no longer up but you can still check our Slides to see snipplets of the UI
+<b>Unfortunately, the hosting platform (SAP) provided to us for free has since closed our account, therefore the website is no longer up but you can still check our Slides to see snipplets of the UI</b>
 
 ## What our solution is about
 
