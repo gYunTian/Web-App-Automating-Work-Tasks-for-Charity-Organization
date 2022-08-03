@@ -9,6 +9,7 @@ specifically: </br>
 4) Analytics and map based visual
 5) Connecting with other organizations to share details on volunteers (so as to condense their operation area)
 
+##### Update 8/3/2021: Unfortunately, the hosting platform (SAP) provided to us for free has since closed our account, therefore the website is no longer up but you can still check our Slides to see snipplets of the UI
 
 ## What our solution is about
 
